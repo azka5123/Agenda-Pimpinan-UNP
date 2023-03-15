@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Front\FrontHomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +29,7 @@ Route::post('/admin/forget-submit', [AdminLoginController::class, 'forget_submit
 Route::get('/admin/reset-password/{token}/{email}', [AdminLoginController::class, 'reset_password'])->name('admin_reset_password');
 Route::post('/admin/reset-submit', [AdminLoginController::class, 'reset_submit'])->name('admin_reset_submit');
 Route::get('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin_logout');
-//endadmin
+//end admin
 
 // admin user
 Route::get('/admin/user/show', [AdminUserController::class, 'show'])->name('admin_user_show')->middleware('admin:admin');
@@ -38,3 +39,9 @@ Route::get('/admin/user/edit/{id}', [AdminUserController::class, 'edit'])->name(
 Route::post('/admin/user/update/{id}', [AdminUserController::class, 'update'])->name('admin_user_update')->middleware('admin:admin');
 Route::get('/admin/user/delete/{id}', [AdminUserController::class, 'delete'])->name('admin_user_delete')->middleware('admin:admin');
 // end admin user
+
+//front
+Route::get('/',[FrontHomeController::class,'show'])->name('front_show');
+Route::get('/search',[FrontHomeController::class,'search'])->name('front_search');
+Route::get('/{id}',[FrontHomeController::class,'show2'])->name('front_show2');
+//end front
