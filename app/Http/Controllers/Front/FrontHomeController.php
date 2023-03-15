@@ -17,17 +17,6 @@ class FrontHomeController extends Controller
         return view('front.home',compact('events','search'));
     }
 
-    // public function search(Request $request)
-    // {
-    //     $search = User::orderBy('id','asc');
-    //     if($request->text != ''){
-    //         $test = $search->where('nama','like','%'.$request->text.'%');
-    //     }
-    //     $search = $test->first();
-    //     return view('front.home',compact('search'));
-    //     // dd($search);
-    // }
-
     public function show2($id)
     {
         $events = [];

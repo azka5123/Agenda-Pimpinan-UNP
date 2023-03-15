@@ -13,6 +13,7 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
 
     <!-- Custom fonts for this template-->
+    @livewireStyles
     @include('front.layout.styles')
     @include('front.layout.scripts')
     
@@ -85,6 +86,7 @@
                 console.error( error );
             } );
     </script>
+    @livewireScripts
 </body>
 
 </html>

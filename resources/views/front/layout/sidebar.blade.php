@@ -12,25 +12,10 @@
      <hr class="sidebar-divider my-0">
 
      {{-- searchbar --}}
-     <div class="form-outline">
-        <input type="search" id="form1" class="form-control" placeholder="Type query" aria-label="Search" />
-      </div>
-
+     <livewire:user-data>
+     
      <!-- Divider -->
-     <hr class="sidebar-divider">
-
-     <!-- Heading -->
-     <div class="sidebar-heading">
-         Nama
-     </div>
-     @foreach ($search as $item)
-         <li class="nav-item">
-             <a class="nav-link" href="{{ route('front_show2', $item->id) }}">
-                 <i class="fas fa-fw fa-tachometer-alt">
-                 </i><span>{{ $item->nama }}</span>
-             </a>
-         </li>
-     @endforeach
+    
      {{-- <li class="nav-item {{ Request::is('admin/setting') ? 'active' : '' }}">
          <a class="nav-link" href="{{ route('admin_setting') }}">
              <i class="fas fa-fw fa-tachometer-alt"></i>
