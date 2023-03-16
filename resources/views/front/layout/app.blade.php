@@ -22,10 +22,10 @@
 
 <body id="page-top">
     <div id="wrapper">
-        @include('front.layout.sidebar')
+        {{-- @include('front.layout.sidebar') --}}
         <div div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
-                {{-- @include('front.layout.nav') --}}
+                @include('front.layout.nav')
                 <div class="container-fluid">
                     @if ($errors->any())
                         @foreach ($errors->all() as $error)

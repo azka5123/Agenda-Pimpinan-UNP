@@ -12,17 +12,16 @@ class FrontHomeController extends Controller
     public function show()
     {
         $events = [];
-        $jadwal = Jadwal::with(['rUser'])->get();
-        $search = User::orderBy('id','asc')->paginate(2);
-        return view('front.home',compact('events','search'));
+        $data_nama = '';
+        return view('front.home',compact('events','data_nama'));
     }
 
-    public function show2($id)
+    public function show2($id,$nama)
     {
         $events = [];
  
         $jadwal = Jadwal::with(['rUser'])->where('user_id',$id)->get();
-        $search = User::orderBy('id','asc')->paginate(2);
+        $data_nama = $nama;
         foreach ($jadwal as $time) {
             $events[] = [
                 'title' => $time->keterangan,
@@ -32,7 +31,7 @@ class FrontHomeController extends Controller
             ];
         }
         
-        return view('front.home',compact('events','jadwal','search'));
+        return view('front.home',compact('events','jadwal','data_nama'));
     }
 
 }

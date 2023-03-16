@@ -5,8 +5,10 @@
 {{-- @section('heading','dashboard') --}}
 
 @section('main_content')
-    
-        <div id="calendar"></div>
+    <div class="container">
+        {{ $data_nama }}
+    </div>
+    <div id="calendar"></div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Front\FrontHomeController;
+use App\Http\Controllers\User\UserLoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,8 +41,18 @@ Route::post('/admin/user/update/{id}', [AdminUserController::class, 'update'])->
 Route::get('/admin/user/delete/{id}', [AdminUserController::class, 'delete'])->name('admin_user_delete')->middleware('admin:admin');
 // end admin user
 
+//user login
+Route::get('user/login',[UserLoginController::class,'login'])->name('user_login');
+Route::post('user/login-submit', [UserLoginController::class, 'login_submit'])->name('user_login_submit');
+Route::get('user/forget-password', [UserLoginController::class, 'forget_pass'])->name('user_forget_password');
+Route::post('user/forget-submit', [UserLoginController::class, 'forget_submit'])->name('user_forget_submit');
+Route::get('user/reset-password/{token}/{email}', [UserLoginController::class, 'reset_password'])->name('user_reset_password');
+Route::post('user/reset-submit', [UserLoginController::class, 'reset_submit'])->name('user_reset_submit');
+Route::get('user/logout', [UserLoginController::class, 'logout'])->name('user_logout');
+//user login end
+
 //front
-Route::get('/',[FrontHomeController::class,'show'])->name('front_show');
-Route::get('/search',[FrontHomeController::class,'search'])->name('front_search');
-Route::get('/{id}',[FrontHomeController::class,'show2'])->name('front_show2');
+Route::get('/', [FrontHomeController::class, 'show'])->name('front_show');
+Route::get('/search', [FrontHomeController::class, 'search'])->name('front_search');
+Route::get('/{id}/{nama}', [FrontHomeController::class, 'show2'])->name('front_show2');
 //end front
