@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminLoginController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\UserLoginController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Front\FrontHomeController;
-use App\Http\Controllers\User\UserLoginController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\UserJadwalController;
+use App\Http\Controllers\Admin\AdminLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,7 @@ Route::get('/admin/user/delete/{id}', [AdminUserController::class, 'delete'])->n
 
 //user login
 Route::get('user/login',[UserLoginController::class,'login'])->name('user_login');
+Route::get('/user/dashboard', [UserLoginController::class, 'index'])->name('user_dashboard');
 Route::post('user/login-submit', [UserLoginController::class, 'login_submit'])->name('user_login_submit');
 Route::get('user/forget-password', [UserLoginController::class, 'forget_pass'])->name('user_forget_password');
 Route::post('user/forget-submit', [UserLoginController::class, 'forget_submit'])->name('user_forget_submit');
@@ -50,6 +52,15 @@ Route::get('user/reset-password/{token}/{email}', [UserLoginController::class, '
 Route::post('user/reset-submit', [UserLoginController::class, 'reset_submit'])->name('user_reset_submit');
 Route::get('user/logout', [UserLoginController::class, 'logout'])->name('user_logout');
 //user login end
+
+//user jadwal
+Route::get('/user/show/jadwal', [UserJadwalController::class, 'show'])->name('show_jadwal');
+Route::get('/user/create/jadwal', [UserJadwalController::class, 'create'])->name('create_jadwal');
+Route::post('/user/store', [UserJadwalController::class, 'store'])->name('store_jadwal');
+Route::get('/user/edit/jadwal/{id}', [UserJadwalController::class, 'edit'])->name('edit_jadwal');
+Route::post('/user/update/jadwal/{id}', [UserJadwalController::class, 'update'])->name('update_jadwal');
+Route::get('/user/delete/jadwal/{id}', [UserJadwalController::class, 'delete'])->name('delete_jadwal');
+
 
 //front
 Route::get('/', [FrontHomeController::class, 'show'])->name('front_show');
