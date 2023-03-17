@@ -90,6 +90,6 @@ class AdminLoginController extends Controller
         $reset->token = '';
         $reset->update();
 
-        return redirect()->back()->with('berhasil','password berhasil diubah');
+        return redirect()->route('admin_login')->with('berhasil','password berhasil diubah');
     }
 }

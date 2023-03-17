@@ -32,7 +32,8 @@ class UserLoginController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ];
-        if (Auth::guard()->attempt($credentials)){
+        if (Auth::attempt($credentials)){
+            // $request->session()->regenerate();
             echo "success";
             // return redirect()->route('user_dashboard');
         }else{

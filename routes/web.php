@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Front\FrontHomeController;
+use App\Http\Controllers\Mail\EmailController;
 use App\Http\Controllers\User\UserLoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +51,10 @@ Route::get('user/reset-password/{token}/{email}', [UserLoginController::class, '
 Route::post('user/reset-submit', [UserLoginController::class, 'reset_submit'])->name('user_reset_submit');
 Route::get('user/logout', [UserLoginController::class, 'logout'])->name('user_logout');
 //user login end
+
+//mail
+Route::get('/mail/send',[EmailController::class,'index']);
+//mail end
 
 //front
 Route::get('/', [FrontHomeController::class, 'show'])->name('front_show');
