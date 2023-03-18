@@ -6,6 +6,7 @@ use App\Http\Controllers\Front\FrontHomeController;
 use App\Http\Controllers\Mail\EmailController;
 use App\Http\Controllers\User\UserLoginController;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,4 +61,5 @@ Route::get('/mail/send',[EmailController::class,'index']);
 Route::get('/', [FrontHomeController::class, 'show'])->name('front_show');
 Route::get('/search', [FrontHomeController::class, 'search'])->name('front_search');
 Route::get('/{id}/{nama}', [FrontHomeController::class, 'show2'])->name('front_show2');
+// Route::get('/{id}/{nama}', [Livewire::class, 'show2'])->name('front_show2');
 //end front

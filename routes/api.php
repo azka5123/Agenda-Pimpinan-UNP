@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //api login
-Route::get('/user/login',[ApiLoginController::class,'api_login']);
+Route::post('/user/login',[ApiLoginController::class,'api_login']);
 //end api login
 
 //api jadwal
