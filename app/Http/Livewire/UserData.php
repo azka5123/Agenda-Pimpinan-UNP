@@ -34,7 +34,7 @@ class UserData extends Component
     {
         $users = User::orderBy('id', 'asc')->get();
         if ($this->search !== null) {
-            $users = User::where('nama', 'like', '%' . $this->search . '%')->paginate(1);
+            $users = User::where('nama', 'like', '%' . $this->search . '%')->orWhere('jabatan', 'like', '%' . $this->search . '%')->paginate(2);
         }
         return view('livewire.user-data', compact('users'));
     }

@@ -47,20 +47,26 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active ml-3">
+                    <li class="nav-item active ml-3 {{ Request::is('search/*') ? '' : 'mt-2' }}">
                         <a class="nav-link" href="{{ route('front_show') }}"><i class="fas fa-fw fa-home"></i> Home<span
-                                class="sr-only">(current)</span></a>
+                                class="sr-only"></span></a>
                     </li>
+                    @if (Request::is('search/*'))
                     <li class="nav-item active mr-3">
                         <a class="nav-link"><span class="mt-1"><i class="fas fa-fw fa-user"></i>
-                                {{ $nama }}</span></a>
+                                {{ $user->nama }} - {{ $user->jabatan }}</span></a>
                     </li>
+                    @else
+                    <li class="nav-item active {{ Request::is('search/*') ? '' : 'mt-2' }}">
+                        <a class="nav-link"><span class="mt-1"><i class="fas fa-fw fa-user"></i>
+                    </li>
+                    @endif
+                   
                     <li class="nav-item">
                         <!-- Button trigger modal -->
-                        <a type=""
-                            class="btn btn-outline-light rounded-pill text-light text-decoration-none d-lg-flex justify-content-end"
-                            data-toggle="modal" data-target="#exampleModal" href="#"><img
-                                src="{{ asset('dist-front/img/login.png') }}" alt="" width="17px"
+                        <a type="" class="btn btn-outline-light rounded-pill text-light text-decoration-none d-lg-flex justify-content-end {{ Request::is('search/*') ? '' : 'mt-n2' }}"
+                            data-toggle="modal" data-target="#exampleModal" href="#">
+                            <img src="{{ asset('dist-front/img/login.png') }}" alt="" width="17px"
                                 height="17px" class="d-lg-mr-2 d-lg-mt-1 mr-2 mt-1"> Login</a>
                     </li>
                 </ul>

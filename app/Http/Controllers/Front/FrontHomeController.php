@@ -13,7 +13,8 @@ class FrontHomeController extends Controller
     {
         $events = [];
         $nama = '';
-        return view('front.home',compact('events','nama'));
+        $jabatan= '';
+        return view('front.home',compact('events','nama','jabatan'));
         
     }
 
@@ -22,7 +23,7 @@ class FrontHomeController extends Controller
         $events = [];
  
         $jadwal = Jadwal::with(['rUser'])->where('user_id',$id)->get();
-        // $user = User::where('id',$id)->first();
+        $user = User::where('id',$id)->first();
         foreach ($jadwal as $time) {
             $events[] = [
                 'title' => $time->keterangan,
@@ -31,7 +32,7 @@ class FrontHomeController extends Controller
                 'end' => $time->finish_time,
             ];
         }
-        return view('front.home',compact('events','jadwal','nama'));
+        return view('front.home',compact('events','jadwal','user'));
     }
 
 }
