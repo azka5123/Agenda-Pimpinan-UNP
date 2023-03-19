@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
+
+
 class UserLoginController extends Controller
 {
     public function index()
@@ -37,12 +39,14 @@ class UserLoginController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ];
+
         if (Auth::guard('user')->attempt($credentials)){
             return redirect()->route('user_dashboard');
         }else{
             return redirect()->route('user_login')->with('error','User tidak ditemukan');
         }
     }
+    
 
     public function logout()
     {
@@ -93,3 +97,7 @@ class UserLoginController extends Controller
         return redirect()->back()->with('berhasil','password berhasil diubah');
     }
 }
+
+
+
+

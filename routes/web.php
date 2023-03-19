@@ -1,11 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserLoginController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Front\FrontHomeController;
 use App\Http\Controllers\User\UserJadwalController;
 use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\Mail\EmailController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
