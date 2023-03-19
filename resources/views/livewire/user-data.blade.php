@@ -1,26 +1,22 @@
-<div class="row justify-content-center">
-    <div class="col col-6">
-        <input class="form-control my-3 rounded-pill" type="text" wire:model="search" placeholder="Search"
-            aria-label="search">
-    </div>
-    <div class="col col-6 pt-4">
-        @foreach ($users as $item)
-            <a href="{{ route('front_show2', [$item->id, $item->nama]) }}" class="text-decoration-none text-light">
+<div class="row my-3">
+    <div class="col-12">
+        <ul class="list-group">
+            <li class="list-group-item"><input class="form-control" type="text" wire:model="search" placeholder="Search"
+                    aria-label="search"></li>
+            @foreach ($users as $item)
                 @if ($search == '')
                 @else
-                    <i class="fas fa-fw fa-user-alt">
-                    </i><span>
-                        {{ $item->nama}}  - {{ $item->jabatan }}
-                    </span>
+                    <li class="list-group-item">
+                        <a href="{{ route('front_show2', [$item->id, $item->nama]) }}"
+                            class="text-decoration-none text-dark px-1">
+                            <i class="fas fa-fw fa-user-alt">
+                            </i><span>
+                                {{ $item->nama }} - {{ $item->jabatan }}
+                            </span>
+                        </a>
+                    </li>
                 @endif
-            </a>
-        @endforeach
+            @endforeach
+        </ul>
     </div>
-
-    {{-- <hr class="sidebar-divider">
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Nama
-    </div> --}}
-
 </div>

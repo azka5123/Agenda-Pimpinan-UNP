@@ -7,6 +7,7 @@ use App\Http\Controllers\User\UserJadwalController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Mail\EmailController;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,5 +67,6 @@ Route::get('/user/delete/jadwal/{id}', [UserJadwalController::class, 'delete'])-
 //front
 Route::get('/', [FrontHomeController::class, 'show'])->name('front_show');
 Route::get('/search', [FrontHomeController::class, 'search'])->name('front_search');
-Route::get('/{id}/{nama}', [FrontHomeController::class, 'show2'])->name('front_show2');
+Route::get('/search/{id}/{nama}', [FrontHomeController::class, 'show2'])->name('front_show2');
+// Route::get('/{id}/{nama}', [Livewire::class, 'show2'])->name('front_show2');
 //end front
