@@ -4,10 +4,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header mx-auto">
-                    <img src="{{ asset('dist-front/img/logounp.png') }}" alt="" class="img-fluid" width="150px" height="150px">
+                    <img src="{{ asset('dist-front/img/logounp.png') }}" alt="" class="img-fluid" width="150px"
+                        height="150px">
                 </div>
                 <div class="modal-header mx-auto">
-                    <p><h3 class="font-weight-bold text-dark" id="exampleModalLabel">Login</h3></p>
+                    <p>
+                    <h3 class="font-weight-bold text-dark" id="exampleModalLabel">Login</h3>
+                    </p>
                 </div>
                 <div class="modal-body">
                     <form>
@@ -52,19 +55,20 @@
                                 class="sr-only"></span></a>
                     </li>
                     @if (Request::is('search/*'))
-                    <li class="nav-item active mr-3">
-                        <a class="nav-link"><span class="mt-1"><i class="fas fa-fw fa-user"></i>
-                                {{ $user->nama }} - {{ $user->jabatan }}</span></a>
-                    </li>
+                        <li class="nav-item active mr-3">
+                            <a class="nav-link"><span class="mt-1"><i class="fas fa-fw fa-user"></i>
+                                    {{ $user->nama }} - {{ $user->jabatan }}</span></a>
+                        </li>
                     @else
-                    <li class="nav-item active {{ Request::is('search/*') ? '' : 'mt-2' }}">
-                        <a class="nav-link"><span class="mt-1"><i class="fas fa-fw fa-user"></i>
-                    </li>
+                        <li class="nav-item active {{ Request::is('search/*') ? '' : 'mt-2' }}">
+                            <a class="nav-link"><span class="mt-1"><i class="fas fa-fw fa-user"></i>
+                        </li>
                     @endif
-                   
+
                     <li class="nav-item">
                         <!-- Button trigger modal -->
-                        <a type="" class="btn btn-outline-light rounded-pill text-light text-decoration-none d-lg-flex justify-content-end {{ Request::is('search/*') ? '' : 'mt-n2' }}"
+                        <a type=""
+                            class="btn btn-outline-light rounded-pill text-light text-decoration-none d-lg-flex justify-content-end {{ Request::is('search/*') ? '' : 'mt-n2' }}"
                             data-toggle="modal" data-target="#exampleModal" href="#">
                             <img src="{{ asset('dist-front/img/login.png') }}" alt="" width="17px"
                                 height="17px" class="d-lg-mr-2 d-lg-mt-1 mr-2 mt-1"> Login</a>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\JadwalResource;
 use App\Models\Jadwal;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,12 +13,14 @@ class ApiUserController extends Controller
 {
     public function index()
     {
-        return Jadwal::all();
+        $jadwal = Jadwal::with('rUser')->get();
+        return JadwalResource::collection($jadwal);
     }
 
     public function show($id)
     {
-        return Jadwal::find($id);
+        $show =  Jadwal::with('rUser')->findOrFail($id);
+        return new JadwalResource($show);
     }
 
     public function store(Request $request)
@@ -46,7 +50,7 @@ class ApiUserController extends Controller
         $update->user_id = $request->user_id;
         $update->keterangan = $request->keterangan;
         $update->start_time = $request->start_time;
-        $update->finish_time = $request->finish_time;  
+        $update->finish_time = $request->finish_time;
         $update->update();
         return response()->json($update);
     }

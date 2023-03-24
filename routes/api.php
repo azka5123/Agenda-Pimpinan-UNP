@@ -25,7 +25,7 @@ Route::post('/user/login', [ApiLoginController::class, 'api_login']);
 //end api login
 
 //api jadwal
-Route::get('/user/index', [ApiUserController::class, 'index'])->middleware('admin:admin');
+Route::get('/user/index', [ApiUserController::class, 'index']);
 Route::get('/user/show/{id}', [ApiUserController::class, 'show']);
 Route::post('/user/store', [ApiUserController::class, 'store']);
 Route::put('/user/update/{id}', [ApiUserController::class, 'update']);

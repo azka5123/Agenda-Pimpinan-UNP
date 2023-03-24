@@ -44,7 +44,7 @@ Route::get('/admin/user/delete/{id}', [AdminUserController::class, 'delete'])->n
 // end admin user
 
 //user login
-Route::get('user/login',[UserLoginController::class,'login'])->name('user_login');
+Route::get('user/login', [UserLoginController::class, 'login'])->name('user_login');
 Route::post('user/login-submit', [UserLoginController::class, 'login_submit'])->name('user_login_submit');
 Route::get('user/forget-password', [UserLoginController::class, 'forget_pass'])->name('user_forget_password');
 Route::post('user/forget-submit', [UserLoginController::class, 'forget_submit'])->name('user_forget_submit');
@@ -54,12 +54,12 @@ Route::get('user/logout', [UserLoginController::class, 'logout'])->name('user_lo
 //user login end
 
 //mail
-Route::get('/mail/send',[EmailController::class,'index']);
+Route::get('/mail/send', [EmailController::class, 'index']);
 //mail end
 
 //front
 Route::get('/', [FrontHomeController::class, 'show'])->name('front_show');
 Route::get('/search', [FrontHomeController::class, 'search'])->name('front_search');
-Route::get('/search/{id?}/{nama?}', [FrontHomeController::class, 'show2'])->name('front_show2');
+Route::get('/search/{nama}', [FrontHomeController::class, 'show2'])->name('front_show2');
 // Route::get('/{id}/{nama}', [Livewire::class, 'show2'])->name('front_show2');
 //end front

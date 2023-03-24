@@ -15,21 +15,6 @@ class UserData extends Component
     public $jabatan;
     public $uid;
     protected $queryString = ['search' => ['except' => '']];
-
-    // public function submitForm()
-    // {
-    //     $uid = 1;
-    //     $nama = "Azka";
-    //     $endpoint = "http://127.0.0.1:8000/"; 
-    //     $response = Http::post($endpoint);
-    //     // dd($response);die;
-    //     if ($response->ok()) {
-    //         // Data berhasil dikirim
-    //     } else {
-    //         // Data gagal dikirim
-    //     }
-    // }
-
     public function render(Request $request)
     {
         $users = User::orderBy('id', 'asc')->get();
@@ -38,6 +23,4 @@ class UserData extends Component
         }
         return view('livewire.user-data', compact('users'));
     }
-
-    
 }

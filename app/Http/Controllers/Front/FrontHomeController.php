@@ -15,30 +15,27 @@ class FrontHomeController extends Controller
     public function show()
     {
         $events = [];
-        $nama = '';
-        $jabatan= '';
-        return view('front.home',compact('events','nama','jabatan'));
-        
+        return view('front.home', compact('events'));
     }
 
-    public function show2(Request $request, $id,$nama)
+    public function show2(Request $request, $nama)
     {
         $events = [];
-        $decoded_id = Hashids::decode($id);
-        $jadwal = Jadwal::with(['rUser'])->where('user_id',$decoded_id)->get();
-        // dd($jadwal);die;
-        $user = User::where('id',$decoded_id)->first();
-        foreach ($jadwal as $time) {
-            $events[] = [
-                'title' => $time->keterangan,
-                'defaultRangeSeparator'=> '-',
-                'start' => $time->start_time,
-                'end' => $time->finish_time,
-            ];
+        // $decoded_id = Hashids::decode($id);
+        $jadwal = user::with('rJadwal')->where('nama', $nama)->get();
+        // dd($jadwal);
+        // die;
+        // $user = User::where('nama', $nama)->first();
+        foreach ($jadwal as $user) {
+            foreach ($user->rJadwal as $time) {
+                $events[] = [
+                    'title' => $time->keterangan,
+                    'defaultRangeSeparator' => '-',
+                    'start' => $time->start_time,
+                    'end' => $time->finish_time,
+                ];
+            }
         }
-        return view('front.home',compact('events','jadwal','user'));
+        return view('front.home', compact('events', 'jadwal', 'user'));
     }
-
-    
-
 }
