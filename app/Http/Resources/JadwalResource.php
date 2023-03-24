@@ -24,7 +24,7 @@ class JadwalResource extends JsonResource
             'keterangan' => $this->keterangan,
             'start_time' => $this->start_time,
             'finish_time' => $this->finish_time,
-            'data_user' => $this->rUser,
+            'data_user' => $this->whenLoaded('rUser'),
 
         ];
     }

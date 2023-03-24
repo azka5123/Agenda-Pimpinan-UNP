@@ -7,52 +7,51 @@ use App\Http\Resources\JadwalResource;
 use App\Models\Jadwal;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ApiUserController extends Controller
 {
+    public function user()
+    {
+        return response()->json(Auth::user());
+    }
+
     public function index()
     {
-        $jadwal = Jadwal::with('rUser')->get();
+        $jadwal = Jadwal::with('rUser:id,nama,jabatan,email')->get();
         return JadwalResource::collection($jadwal);
     }
 
     public function show($id)
     {
-        $show =  Jadwal::with('rUser')->findOrFail($id);
+        $show =  Jadwal::with('rUser:id,nama,jabatan,email')->findOrFail($id);
         return new JadwalResource($show);
     }
 
     public function store(Request $request)
     {
-        // DB::table('jadwals')->insert([
-        //     'user_id'=>$request->user_id,
-        //     'keterangan'=>$request->keterangan,
-        //     'start_time'=>$request->start_time,
-        //     'finish_time'=>$request->finish_time,
-        //     
-        // ]);
-
-        $store = new Jadwal();
-        $store->user_id = $request->user_id;
-        $store->keterangan = $request->keterangan;
-        $store->start_time = $request->start_time;
-        $store->finish_time = $request->finish_time;
-        $store->save();
-
-        // $store =  Jadwal::create($request->all());
-        return response()->json($store);
+        $request->validate([
+            'keterangan' => 'required',
+            'start_time' => 'required',
+            'finish_time' => 'required',
+        ]);
+        $request['user_id'] = Auth::user()->id;
+        $store =  Jadwal::create($request->all());
+        return new JadwalResource($store->loadMissing('rUser:id,nama,email,jabatan'));
     }
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'keterangan' => 'required',
+            'start_time' => 'required',
+            'finish_time' => 'required',
+        ]);
+
         $update = Jadwal::findOrFail($id);
-        $update->user_id = $request->user_id;
-        $update->keterangan = $request->keterangan;
-        $update->start_time = $request->start_time;
-        $update->finish_time = $request->finish_time;
-        $update->update();
-        return response()->json($update);
+        $update->update($request->all());
+        return new JadwalResource($update->loadMissing('rUser:id,nama,email,jabatan'));
     }
 
     public function delete($id)

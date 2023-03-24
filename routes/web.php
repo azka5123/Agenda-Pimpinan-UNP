@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Front\FrontHomeController;
-use App\Http\Controllers\Mail\EmailController;
 use App\Http\Controllers\User\UserLoginController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
@@ -31,16 +30,19 @@ Route::get('/admin/forget-password', [AdminLoginController::class, 'forget_pass'
 Route::post('/admin/forget-submit', [AdminLoginController::class, 'forget_submit'])->name('admin_forget_submit');
 Route::get('/admin/reset-password/{token}/{email}', [AdminLoginController::class, 'reset_password'])->name('admin_reset_password');
 Route::post('/admin/reset-submit', [AdminLoginController::class, 'reset_submit'])->name('admin_reset_submit');
-Route::get('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin_logout');
+Route::get('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin_logout')->middleware('admin:admin');
 //end admin
 
 // admin user
-Route::get('/admin/user/show', [AdminUserController::class, 'show'])->name('admin_user_show')->middleware('admin:admin');
-Route::get('/admin/user/create', [AdminUserController::class, 'create'])->name('admin_user_create')->middleware('admin:admin');
-Route::post('/admin/user/store', [AdminUserController::class, 'store'])->name('admin_user_store')->middleware('admin:admin');
-Route::get('/admin/user/edit/{id}', [AdminUserController::class, 'edit'])->name('admin_user_edit')->middleware('admin:admin');
-Route::post('/admin/user/update/{id}', [AdminUserController::class, 'update'])->name('admin_user_update')->middleware('admin:admin');
-Route::get('/admin/user/delete/{id}', [AdminUserController::class, 'delete'])->name('admin_user_delete')->middleware('admin:admin');
+Route::middleware('admin:admin')->group(function () {
+    Route::get('/admin/user/show', [AdminUserController::class, 'show'])->name('admin_user_show');
+    Route::get('/admin/user/create', [AdminUserController::class, 'create'])->name('admin_user_create');
+    Route::post('/admin/user/store', [AdminUserController::class, 'store'])->name('admin_user_store');
+    Route::get('/admin/user/edit/{id}', [AdminUserController::class, 'edit'])->name('admin_user_edit');
+    Route::post('/admin/user/update/{id}', [AdminUserController::class, 'update'])->name('admin_user_update');
+    Route::get('/admin/user/delete/{id}', [AdminUserController::class, 'delete'])->name('admin_user_delete');
+});
+
 // end admin user
 
 //user login
@@ -53,13 +55,8 @@ Route::post('user/reset-submit', [UserLoginController::class, 'reset_submit'])->
 Route::get('user/logout', [UserLoginController::class, 'logout'])->name('user_logout');
 //user login end
 
-//mail
-Route::get('/mail/send', [EmailController::class, 'index']);
-//mail end
-
 //front
 Route::get('/', [FrontHomeController::class, 'show'])->name('front_show');
 Route::get('/search', [FrontHomeController::class, 'search'])->name('front_search');
 Route::get('/search/{nama}', [FrontHomeController::class, 'show2'])->name('front_show2');
-// Route::get('/{id}/{nama}', [Livewire::class, 'show2'])->name('front_show2');
 //end front
