@@ -21,4 +21,23 @@
  <script src="{{ asset('dist-front/js/demo/datatables-demo.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
  
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            // slotMinTime: '7:00:00',
+            // slotMaxTime: '18:00:00',
+            headerToolbar: {
+                left: 'dayGridMonth,timeGridWeek,timeGridDay',
+                center: 'title',
+                right: 'today prev,next'
+            },
+            events: @json($events),
+            dayMaxEventRows: 2,
+            selectable: true,
+        });
+        calendar.render();
+    });
+</script>
 

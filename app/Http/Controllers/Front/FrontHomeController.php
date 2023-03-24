@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Jadwal;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Vinkla\Hashids\Facades\Hashids;
+
+
 
 class FrontHomeController extends Controller
 {
@@ -21,9 +24,10 @@ class FrontHomeController extends Controller
     public function show2(Request $request, $id,$nama)
     {
         $events = [];
- 
-        $jadwal = Jadwal::with(['rUser'])->where('user_id',$id)->get();
-        $user = User::where('id',$id)->first();
+        $decoded_id = Hashids::decode($id);
+        $jadwal = Jadwal::with(['rUser'])->where('user_id',$decoded_id)->get();
+        // dd($jadwal);die;
+        $user = User::where('id',$decoded_id)->first();
         foreach ($jadwal as $time) {
             $events[] = [
                 'title' => $time->keterangan,
@@ -34,5 +38,7 @@ class FrontHomeController extends Controller
         }
         return view('front.home',compact('events','jadwal','user'));
     }
+
+    
 
 }

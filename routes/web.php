@@ -60,6 +60,6 @@ Route::get('/mail/send',[EmailController::class,'index']);
 //front
 Route::get('/', [FrontHomeController::class, 'show'])->name('front_show');
 Route::get('/search', [FrontHomeController::class, 'search'])->name('front_search');
-Route::get('/search/{id}/{nama}', [FrontHomeController::class, 'show2'])->name('front_show2');
+Route::get('/search/{id?}/{nama?}', [FrontHomeController::class, 'show2'])->name('front_show2');
 // Route::get('/{id}/{nama}', [Livewire::class, 'show2'])->name('front_show2');
 //end front

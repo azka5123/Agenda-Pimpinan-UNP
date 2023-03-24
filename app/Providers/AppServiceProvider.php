@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Vinkla\Hashids\Facades\Hashids;
 
 class AppServiceProvider extends ServiceProvider
 {
