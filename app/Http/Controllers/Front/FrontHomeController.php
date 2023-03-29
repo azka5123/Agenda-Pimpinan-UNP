@@ -15,7 +15,14 @@ class FrontHomeController extends Controller
     public function show()
     {
         $events = [];
+<<<<<<< HEAD
+        $nama = 'nama';
+        $jabatan= 'jabatan';
+        return view('front.home',compact('events','nama','jabatan'));
+        
+=======
         return view('front.home', compact('events'));
+>>>>>>> 064776835ff978095c690bec468f8eb4951219a4
     }
 
     public function show2(Request $request, $nama)

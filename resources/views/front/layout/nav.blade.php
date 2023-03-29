@@ -13,7 +13,8 @@
                     </p>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="{{ route('user_login_submit') }}" method="POST">
+                        @csrf
                         <div class="form-group text-dark">
                             <label for="exampleInputEmail1">Email address</label>
                             <input type="email" class="form-control" name="email" placeholder="Enter email">
@@ -23,11 +24,11 @@
                             <input type="password" class="form-control" name="password" placeholder="Password">
                         </div>
                         <div class="form-group text-dark text-right">
-                            <a class="#" href="">Lupa Sandi?</a>
+                            <a class="#" href="{{ route('user_forget_password') }}">Lupa Sandi?</a>
                         </div>
                 </div>
                 <div class="modal-footer text-dark">
-                    <a href="#"><button type="button" class="btn btn-primary">Login</button></a>
+                    <input type="submit" class="btn btn-primary" value="Login">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
                 </form>
@@ -67,9 +68,14 @@
 
                     <li class="nav-item">
                         <!-- Button trigger modal -->
+<<<<<<< HEAD
+                        <a type="" class="btn btn-outline-light rounded-pill text-light text-decoration-none d-lg-flex justify-content-end {{ Request::is('search/*') ? '' : 'mt-n2' }}"
+                            data-toggle="modal" data-target="#exampleModal">
+=======
                         <a type=""
                             class="btn btn-outline-light rounded-pill text-light text-decoration-none d-lg-flex justify-content-end {{ Request::is('search/*') ? '' : 'mt-n2' }}"
                             data-toggle="modal" data-target="#exampleModal" href="#">
+>>>>>>> 064776835ff978095c690bec468f8eb4951219a4
                             <img src="{{ asset('dist-front/img/login.png') }}" alt="" width="17px"
                                 height="17px" class="d-lg-mr-2 d-lg-mt-1 mr-2 mt-1"> Login</a>
                     </li>

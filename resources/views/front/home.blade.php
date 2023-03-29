@@ -4,8 +4,14 @@
 
 @section('main_content')
     {{-- searchbar --}}
-    <livewire:user-data>
+    <livewire:user-data> 
+             
         <div class="container-fluid" id="calendar"></div>
+        @if (session()->get('berhasil'))
+        <div class="alert alert-success">{{ session()->get('berhasil') }}</div>
+        @elseif (session()->get('error'))
+        <div class="alert alert-danger">{{ session()->get('error') }}</div>
+        @endif 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 var calendarEl = document.getElementById('calendar');
@@ -26,4 +32,5 @@
                 calendar.render();
             });
         </script>
+        
     @endsection
