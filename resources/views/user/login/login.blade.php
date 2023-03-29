@@ -24,7 +24,7 @@
                                 <div class="alert alert-success">{{ session()->get('berhasil') }}</div>
                                 @elseif (session()->get('error'))
                                 <div class="alert alert-danger">{{ session()->get('error') }}</div>
-                            @endif
+                                @endif
                                 <div class="card-header card-header-auth">
                                     <h4 class="text-center">Login</h4>
                                 </div>
@@ -49,7 +49,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                            <button type="submit" class="btn btn-info btn-lg btn-block">
                                                 Login
                                             </button>
                                         </div>

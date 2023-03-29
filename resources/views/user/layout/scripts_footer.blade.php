@@ -27,3 +27,6 @@
  <script src="{{ asset('dist/js/demo/datatables-demo.js') }}"></script>
  
 
+
+
+

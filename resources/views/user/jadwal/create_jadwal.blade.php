@@ -12,14 +12,8 @@
                         <h5>Create Jadwal</h5>
                         <div class="card-body">
                             <div class="form-group mb-3">
-                                <label>Id Dosen</label>
-                                <select name="user_id" class="form-control">
-                                    <option value="">-Pilih-</option>
-                                    @foreach ($dosen as $item)
-                                         <option value="{{ $item->id }}">{{ $item->id }}. {{ $item->nama }}</option>
-                                    @endforeach
-                                    
-                                </select>
+                                <label>Nama Dosen</label>
+                                <input type="text" class="form-control" name="tanggal" value="{{ Auth::user()->nama }}" readonly>   
                             </div>
                             <div class="form-group mb-3">
                                 <label>Tanggal Mulai</label>
@@ -31,12 +25,10 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label>Keterangan</label>
-                                <textarea class="form-control" name="keterangan" rows="5"></textarea>
-                                
-                            </div>
-                            
+                                <textarea class="form-control" name="keterangan" rows="5"></textarea>                                
+                            </div>                            
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-info">Submit</button>
                             </div>
                         </div>
                     </div>

@@ -45,9 +45,9 @@ Route::get('/admin/user/delete/{id}', [AdminUserController::class, 'delete'])->n
 // end admin user
 
 //user login
-Route::get('user/login',[UserLoginController::class,'login'])->name('user_login');
-Route::get('/user/dashboard', [UserLoginController::class, 'index'])->name('user_dashboard');
+// Route::get('user/login',[UserLoginController::class,'login'])->name('user_login');
 Route::post('user/login-submit', [UserLoginController::class, 'login_submit'])->name('user_login_submit');
+Route::get('/user/dashboard', [UserLoginController::class, 'index'])->name('user_dashboard');
 Route::get('user/forget-password', [UserLoginController::class, 'forget_pass'])->name('user_forget_password');
 Route::post('user/forget-submit', [UserLoginController::class, 'forget_submit'])->name('user_forget_submit');
 Route::get('user/reset-password/{token}/{email}', [UserLoginController::class, 'reset_password'])->name('user_reset_password');
@@ -56,13 +56,13 @@ Route::get('user/logout', [UserLoginController::class, 'logout'])->name('user_lo
 //user login end
 
 //user jadwal
-Route::get('/user/show/jadwal', [UserJadwalController::class, 'show'])->name('show_jadwal');
-Route::get('/user/create/jadwal', [UserJadwalController::class, 'create'])->name('create_jadwal');
-Route::post('/user/store', [UserJadwalController::class, 'store'])->name('store_jadwal');
-Route::get('/user/edit/jadwal/{id}', [UserJadwalController::class, 'edit'])->name('edit_jadwal');
-Route::post('/user/update/jadwal/{id}', [UserJadwalController::class, 'update'])->name('update_jadwal');
-Route::get('/user/delete/jadwal/{id}', [UserJadwalController::class, 'delete'])->name('delete_jadwal');
-
+Route::get('/user/show/jadwal', [UserJadwalController::class, 'show'])->name('show_jadwal')->middleware('auth');
+Route::get('/user/show/all_jadwal', [UserJadwalController::class, 'show2'])->name('show_all_jadwal')->middleware('auth');
+Route::get('/user/create/jadwal', [UserJadwalController::class, 'create'])->name('create_jadwal')->middleware('auth');
+Route::post('/user/store', [UserJadwalController::class, 'store'])->name('store_jadwal')->middleware('auth');
+Route::get('/user/edit/jadwal/{id}', [UserJadwalController::class, 'edit'])->name('edit_jadwal')->middleware('auth');
+Route::post('/user/update/jadwal/{id}', [UserJadwalController::class, 'update'])->name('update_jadwal')->middleware('auth');
+Route::get('/user/delete/jadwal/{id}', [UserJadwalController::class, 'delete'])->name('delete_jadwal')->middleware('auth');
 
 //front
 Route::get('/', [FrontHomeController::class, 'show'])->name('front_show');

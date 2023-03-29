@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div>
-                                            <a href="{{ route('user_login') }}">
+                                            <a href="{{ route('front_show') }}">
                                                 Back to login page
                                             </a>
                                         </div>

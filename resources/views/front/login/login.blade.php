@@ -15,7 +15,7 @@
     <div id="app">
         <div class="main-wrapper">
             <section class="section">
-                <div class="container container-login">
+                <div class="container container-login border-box">
                     <div class="row">
                         <div
                             class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
@@ -25,7 +25,7 @@
                                 @elseif (session()->get('error'))
                                     <div class="alert alert-danger">{{ session()->get('error') }}</div>
                                 @endif
-                                <div class="card-header card-header-auth">
+                                <div class="card-header card-header-auth" >
                                     <h4 class="text-center">Login</h4>
                                 </div>
                                 <div class="card-body card-body-auth">
@@ -48,11 +48,10 @@
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                                Login
-                                            </button>
-                                        </div>
+                                        {{-- <div class="form-group">
+                                            <input type="submit" class="btn btn-primary btn-lg btn-block" value="asd">
+                                           
+                                        </div> --}}
                                         <div class="form-group">
                                             <div>
                                                 <a href="{{ route('user_forget_password') }}">

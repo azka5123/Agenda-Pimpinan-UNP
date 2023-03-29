@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\User;
+use App\Models\Jadwal;
+use App\Mail\Websitemail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Mail\Websitemail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -16,12 +17,11 @@ class UserLoginController extends Controller
 {
     public function index()
     {
-        return view('user.home');
-    }
+       
+        $events = Jadwal::all();
+        return view('user.jadwal.show_jadwal', compact('events'));   
+        
 
-    public function login()
-    {
-        return view('user.login.login');
     }
     
     public function forget_pass()
@@ -39,26 +39,27 @@ class UserLoginController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ];
-
-        if (Auth::guard('user')->attempt($credentials)){
-            return redirect()->route('user_dashboard');
+        // dd($credentials);die;
+        if (Auth::attempt($credentials)){
+            // dd($credentials);die;
+            return redirect()->route('show_jadwal');
         }else{
-            return redirect()->route('user_login')->with('error','User tidak ditemukan');
+            return redirect()->route('front_show')->with('error','User tidak ditemukan');
         }
     }
     
 
     public function logout()
     {
-        Auth::guard('user')->logout();
-        return redirect()->route('user_login')->with('Berhasil','logout success');
+        Auth::logout();
+        return redirect()->route('front_show')->with('berhasil','logout success');
     }
 
     public function forget_submit(Request $request)
     {
         $email = User::where('email',$request->email)->first();
         if(!$email){
-            return redirect()->back()->with('error','user not found');
+            return redirect()->back()->with('error','User not found');
         }
         $token = hash('sha256',time());
 
@@ -71,14 +72,14 @@ class UserLoginController extends Controller
 
         Mail::to($request->email)->send(new Websitemail($subject,$message));
 
-        return redirect()->route('user_login')->with('berhasil','lihat email anda');
+        return redirect()->route('front_show')->with('berhasil','Lihat email anda');
     }
 
     public function reset_password($token,$email)
     {
         $reset = User::where('token',$token)->where('email',$email);
         if(!$reset){
-            return redirect()->route('user_login')->with('error','error');
+            return redirect()->route('front_show')->with('error','error');
         }
         return view('user.login.reset_password',compact('token','email'));
     }
@@ -94,9 +95,14 @@ class UserLoginController extends Controller
         $reset->token = '';
         $reset->update();
 
-        return redirect()->back()->with('berhasil','password berhasil diubah');
+        return redirect()->route('front_show')->with('berhasil','Password berhasil diubah');
     }
+
+
+  
 }
+
+
 
 
 

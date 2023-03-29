@@ -23,7 +23,7 @@
                     <div class="row">
                         <div
                             class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-                            <div class="card card-primary border-box">
+                            <div class="card card-info border-box">
                                 <div class="card-header card-header-auth">
                                     <h4 class="text-center">Reset Password</h4>
                                 </div>
@@ -53,7 +53,7 @@
                                             @endif --}}
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                            <button type="submit" class="btn btn-info btn-lg btn-block">
                                                 Send Password Reset Link
                                             </button>
                                         </div>
