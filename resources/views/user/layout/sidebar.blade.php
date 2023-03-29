@@ -29,15 +29,15 @@
 
      <li class="nav-item">
          <a class="nav-link" href="{{ route('show_jadwal') }}">
-            <i class="fas fa-fw fa-tachometer-alt">
-                </i><span>Jadwal</span></a>
+             <i class="fas fa-fw fa-tachometer-alt">
+             </i><span>Jadwal</span></a>
      </li>
 
      <li class="nav-item">
-        <a class="nav-link" href="{{ route('show_all_jadwal') }}">
-           <i class="fas fa-fw fa-tachometer-alt">
-               </i><span>All Agenda</span></a>
-    </li>
+         <a class="nav-link" href="{{ route('show_all_jadwal') }}">
+             <i class="fas fa-fw fa-tachometer-alt">
+             </i><span>All Agenda</span></a>
+     </li>
 
      <li class="nav-item">
          <a class="nav-link" href="{{ route('user_logout') }}" data-toggle="modal" data-target="#logoutModal">

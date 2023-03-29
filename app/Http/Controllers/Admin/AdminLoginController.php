@@ -12,11 +12,6 @@ use Illuminate\Support\Facades\Mail;
 
 class AdminLoginController extends Controller
 {
-    public function index()
-    {
-        return view('admin.home');
-    }
-
     public function login()
     {
         return view('admin.login.login');
@@ -38,7 +33,7 @@ class AdminLoginController extends Controller
             'password' => $request->password,
         ];
         if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect()->route('admin_dashboard');
+            return redirect()->route('admin_user_show');
         } else {
             return redirect()->route('admin_login')->with('error', 'User tidak ditemukan');
         }

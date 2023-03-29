@@ -17,13 +17,11 @@ class UserLoginController extends Controller
 {
     public function index()
     {
-       
-        $events = Jadwal::all();
-        return view('user.jadwal.show_jadwal', compact('events'));   
-        
 
+        $events = [];
+        return view('user.jadwal.show_jadwal', compact('events'));
     }
-    
+
     public function forget_pass()
     {
         return view('user.login.forget_password');
@@ -33,55 +31,55 @@ class UserLoginController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password'=> 'required'
+            'password' => 'required'
         ]);
         $credentials = [
             'email' => $request->email,
             'password' => $request->password,
         ];
         // dd($credentials);die;
-        if (Auth::attempt($credentials)){
+        if (Auth::attempt($credentials)) {
             // dd($credentials);die;
             return redirect()->route('show_jadwal');
-        }else{
-            return redirect()->route('front_show')->with('error','User tidak ditemukan');
+        } else {
+            return redirect()->route('front_show')->with('error', 'User tidak ditemukan');
         }
     }
-    
+
 
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('front_show')->with('berhasil','logout success');
+        return redirect()->route('front_show')->with('berhasil', 'logout success');
     }
 
     public function forget_submit(Request $request)
     {
-        $email = User::where('email',$request->email)->first();
-        if(!$email){
-            return redirect()->back()->with('error','User not found');
+        $email = User::where('email', $request->email)->first();
+        if (!$email) {
+            return redirect()->back()->with('error', 'User not found');
         }
-        $token = hash('sha256',time());
+        $token = hash('sha256', time());
 
         $email->token = $token;
         $email->update();
 
-        $reset_link = url('user/reset-password/'.$token.'/'.$request->email);
+        $reset_link = url('user/reset-password/' . $token . '/' . $request->email);
         $subject = 'reset password';
-        $message = 'klik link <a href="'.$reset_link.'">ini</a>';
+        $message = 'klik link <a href="' . $reset_link . '">ini</a>';
 
-        Mail::to($request->email)->send(new Websitemail($subject,$message));
+        Mail::to($request->email)->send(new Websitemail($subject, $message));
 
-        return redirect()->route('front_show')->with('berhasil','Lihat email anda');
+        return redirect()->route('front_show')->with('berhasil', 'Lihat email anda');
     }
 
-    public function reset_password($token,$email)
+    public function reset_password($token, $email)
     {
-        $reset = User::where('token',$token)->where('email',$email);
-        if(!$reset){
-            return redirect()->route('front_show')->with('error','error');
+        $reset = User::where('token', $token)->where('email', $email);
+        if (!$reset) {
+            return redirect()->route('front_show')->with('error', 'error');
         }
-        return view('user.login.reset_password',compact('token','email'));
+        return view('user.login.reset_password', compact('token', 'email'));
     }
 
     public function reset_submit(Request $request)
@@ -90,20 +88,11 @@ class UserLoginController extends Controller
             'password' => 'required',
             'retype-password' => 'required|same:password'
         ]);
-        $reset = User::where('token',$request->token)->where('email',$request->email)->first();
+        $reset = User::where('token', $request->token)->where('email', $request->email)->first();
         $reset->password = Hash::make($request->password);
         $reset->token = '';
         $reset->update();
 
-        return redirect()->route('front_show')->with('berhasil','Password berhasil diubah');
+        return redirect()->route('front_show')->with('berhasil', 'Password berhasil diubah');
     }
-
-
-  
 }
-
-
-
-
-
-

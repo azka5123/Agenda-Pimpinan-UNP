@@ -68,16 +68,12 @@
 
                     <li class="nav-item">
                         <!-- Button trigger modal -->
-<<<<<<< HEAD
-                        <a type="" class="btn btn-outline-light rounded-pill text-light text-decoration-none d-lg-flex justify-content-end {{ Request::is('search/*') ? '' : 'mt-n2' }}"
-                            data-toggle="modal" data-target="#exampleModal">
-=======
                         <a type=""
                             class="btn btn-outline-light rounded-pill text-light text-decoration-none d-lg-flex justify-content-end {{ Request::is('search/*') ? '' : 'mt-n2' }}"
                             data-toggle="modal" data-target="#exampleModal" href="#">
->>>>>>> 064776835ff978095c690bec468f8eb4951219a4
                             <img src="{{ asset('dist-front/img/login.png') }}" alt="" width="17px"
                                 height="17px" class="d-lg-mr-2 d-lg-mt-1 mr-2 mt-1"> Login</a>
+                        </a>
                     </li>
                 </ul>
             </div>
