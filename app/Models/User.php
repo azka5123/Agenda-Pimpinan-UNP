@@ -11,6 +11,15 @@ class User extends Authenticatable
 {
     use HasFactory, HasApiTokens;
 
+    protected $table = 'users';
+
+    protected $guarded = [
+        'id'
+    ];
+
+    protected $fillable = [
+        'nama', 'jabatan', 'email', 'password', 'token'
+    ];
     /**
      * Get all of the rJadwal for the User
      *

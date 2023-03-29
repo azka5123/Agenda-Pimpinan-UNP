@@ -19,12 +19,12 @@
                     <div class="row">
                         <div
                             class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-                            <div class="card card-primary border-box">
+                            <div class="card card-info border-box">
                                 @if (session()->get('berhasil'))
-                                <div class="alert alert-success">{{ session()->get('berhasil') }}</div>
+                                    <div class="alert alert-success">{{ session()->get('berhasil') }}</div>
                                 @elseif (session()->get('error'))
-                                <div class="alert alert-danger">{{ session()->get('error') }}</div>
-                            @endif
+                                    <div class="alert alert-danger">{{ session()->get('error') }}</div>
+                                @endif
                                 <div class="card-header card-header-auth">
                                     <h4 class="text-center">Admin Panel Login</h4>
                                 </div>
@@ -49,7 +49,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                            <button type="submit" class="btn btn-info btn-lg btn-block">
                                                 Login
                                             </button>
                                         </div>

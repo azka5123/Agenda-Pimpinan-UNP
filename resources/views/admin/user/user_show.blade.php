@@ -7,8 +7,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary"><a href="{{ route('admin_user_create') }}"
-                    class="btn btn-primary">
+            <h6 class="m-0 font-weight-bold text-primary"><a href="{{ route('admin_user_create') }}" class="btn btn-info">
                     <i class="fas fa-plus"></i>Add User</a></h6>
         </div>
 

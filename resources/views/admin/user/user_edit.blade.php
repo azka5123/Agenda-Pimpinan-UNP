@@ -4,7 +4,7 @@
 
 @section('main_content')
     <div class="section-body">
-        <form action="{{ route('admin_user_update',$edit->id) }}" method="post">
+        <form action="{{ route('admin_user_update', $edit->id) }}" method="post">
             @csrf
             <div class="row">
                 <div class="col-12">
@@ -32,7 +32,7 @@
                                 <input type="password" class="form-control" name="password_confirmation">
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-info">Submit</button>
                             </div>
                         </div>
                     </div>

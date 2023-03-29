@@ -9,13 +9,14 @@
     <meta name="author" content="">
 
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
 
     <!-- Custom fonts for this template-->
     @include('admin.layout.styles')
     @include('admin.layout.scripts')
-    
+
 
 </head>
 
@@ -72,7 +73,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="{{ route('admin_logout') }}">Logout</a>
+                    <a class="btn btn-info" href="{{ route('admin_logout') }}">Logout</a>
                 </div>
             </div>
         </div>
@@ -80,10 +81,10 @@
     @include('admin.layout.scripts_footer')
     <script>
         ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error => {
-                console.error( error );
-            } );
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 </body>
 

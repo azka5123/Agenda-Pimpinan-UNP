@@ -10,9 +10,17 @@ use Laravel\Sanctum\HasApiTokens;
 class Jadwal extends Model
 {
     use HasFactory, HasApiTokens;
+
+    protected $table = 'jadwals';
+
+    protected $guarded = [
+        'id'
+    ];
+
     protected $fillable = [
         'user_id', 'keterangan', 'start_time', 'finish_time'
     ];
+
     public function rUser()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
