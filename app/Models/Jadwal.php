@@ -9,14 +9,11 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Jadwal extends Model
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens;
 
     protected $fillable = [
         'user_id', 'keterangan', 'start_time', 'finish_time'
     ];
-
-
-    use HasFactory, HasApiTokens;
 
     protected $table = 'jadwals';
 
