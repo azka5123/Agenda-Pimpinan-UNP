@@ -7,28 +7,32 @@ use App\Models\Jadwal;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class ApiLoginController extends Controller
 {
     public function api_login(Request $request)
     {
-        // $user = User::where('id',1)->get();
-        // return response()->json($user);
-        $login = Auth::Attempt($request->all());
-        if ($login) {
-            $user = Auth::user();
-            return response()->json([
-                'response_code' => 200,
-                'message' => 'Login Berhasil',
-                'content' => $user
-            ]);
-        }else{
-            return response()->json([
-                'response_code' => 404,
-                'message' => 'Username atau Password Tidak Ditemukan!'
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect.'],
             ]);
         }
+
+        return $user->createToken('user login')->plainTextToken;
     }
 
-
+    public function api_logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        return response()->json('sukses logout');
+    }
 }

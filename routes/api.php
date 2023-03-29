@@ -16,18 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 //api login
-Route::post('/user/login',[ApiLoginController::class,'api_login']);
+Route::post('/user/login', [ApiLoginController::class, 'api_login']);
+Route::get('/user/logout', [ApiLoginController::class, 'api_logout'])->middleware('auth:sanctum');
 //end api login
 
 //api jadwal
-Route::get('/user/index',[ApiUserController::class,'index']);
-Route::get('/user/show/{id}',[ApiUserController::class,'show']);
-Route::post('/user/store',[ApiUserController::class,'store']);
-Route::put('/user/update/{id}',[ApiUserController::class,'update']);
-Route::get('/user/delete/{id}',[ApiUserController::class,'delete']);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/user/data-user', [ApiUserController::class, 'user']);
+    Route::post('/user/store', [ApiUserController::class, 'store']);
+    Route::put('/user/update/{id}', [ApiUserController::class, 'update'])->middleware('pemilik_jadwal');
+    Route::delete('/user/delete/{id}', [ApiUserController::class, 'delete'])->middleware('pemilik_jadwal');
+});
+Route::get('/user/index', [ApiUserController::class, 'index']);
+Route::get('/user/show/{id}', [ApiUserController::class, 'show']);
 //api jadwal end

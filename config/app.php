@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+use Vinkla\Hashids\Facades\Hashids;
+
 
 return [
 
@@ -185,6 +187,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Vinkla\Hashids\HashidsServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -194,6 +197,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
 
     ],
 
@@ -210,6 +214,9 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+
     ])->toArray(),
+
+    'Hashids' => Vinkla\Hashids\Facades\Hashids::class
 
 ];

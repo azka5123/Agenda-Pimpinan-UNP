@@ -21,7 +21,7 @@ class AdminLoginController extends Controller
     {
         return view('admin.login.login');
     }
-    
+
     public function forget_pass()
     {
         return view('admin.login.forget_password');
@@ -31,52 +31,52 @@ class AdminLoginController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password'=> 'required'
+            'password' => 'required'
         ]);
         $credentials = [
             'email' => $request->email,
             'password' => $request->password,
         ];
-        if (Auth::guard('admin')->attempt($credentials)){
+        if (Auth::guard('admin')->attempt($credentials)) {
             return redirect()->route('admin_dashboard');
-        }else{
-            return redirect()->route('admin_login')->with('error','User tidak ditemukan');
+        } else {
+            return redirect()->route('admin_login')->with('error', 'User tidak ditemukan');
         }
     }
 
     public function logout()
     {
         Auth::guard('admin')->logout();
-        return redirect()->route('admin_login')->with('berhasil','sukses logout');
+        return redirect()->route('admin_login')->with('berhasil', 'sukses logout');
     }
 
     public function forget_submit(Request $request)
     {
-        $email = Admin::where('email',$request->email)->first();
-        if(!$email){
-            return redirect()->back()->with('error','user not found');
+        $email = Admin::where('email', $request->email)->first();
+        if (!$email) {
+            return redirect()->back()->with('error', 'user not found');
         }
-        $token = hash('sha256',time());
+        $token = hash('sha256', time());
 
         $email->token = $token;
         $email->update();
 
-        $reset_link = url('admin/reset-password/'.$token.'/'.$request->email);
+        $reset_link = url('admin/reset-password/' . $token . '/' . $request->email);
         $subject = 'reset password';
-        $message = 'klik link <a href="'.$reset_link.'">ini</a>';
+        $message = 'klik link <a href="' . $reset_link . '">ini</a>';
 
-        Mail::to($request->email)->send(new Websitemail($subject,$message));
+        Mail::to($request->email)->send(new Websitemail($subject, $message));
 
-        return redirect()->route('admin_login')->with('berhasil','lihat email anda');
+        return redirect()->route('admin_login')->with('berhasil', 'lihat email anda');
     }
 
-    public function reset_password($token,$email)
+    public function reset_password($token, $email)
     {
-        $reset = Admin::where('token',$token)->where('email',$email);
-        if(!$reset){
-            return redirect()->route('admin_login')->with('error','error');
+        $reset = Admin::where('token', $token)->where('email', $email);
+        if (!$reset) {
+            return redirect()->route('admin_login')->with('error', 'error');
         }
-        return view('admin.login.reset_password',compact('token','email'));
+        return view('admin.login.reset_password', compact('token', 'email'));
     }
 
     public function reset_submit(Request $request)
@@ -85,11 +85,11 @@ class AdminLoginController extends Controller
             'password' => 'required',
             'retype-password' => 'required|same:password'
         ]);
-        $reset = Admin::where('token',$request->token)->where('email',$request->email)->first();
+        $reset = Admin::where('token', $request->token)->where('email', $request->email)->first();
         $reset->password = Hash::make($request->password);
         $reset->token = '';
         $reset->update();
 
-        return redirect()->route('admin_login')->with('berhasil','password berhasil diubah');
+        return redirect()->route('admin_login')->with('berhasil', 'password berhasil diubah');
     }
 }

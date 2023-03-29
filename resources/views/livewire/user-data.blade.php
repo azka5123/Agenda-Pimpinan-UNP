@@ -7,8 +7,7 @@
                 @if ($search == '')
                 @else
                     <li class="list-group-item">
-                        <a href="{{ route('front_show2', [$item->id, $item->nama]) }}"
-                            class="text-decoration-none text-dark px-1">
+                        <a href="{{ route('front_show2', $item->nama) }}" class="text-decoration-none text-dark px-1">
                             <i class="fas fa-fw fa-user-alt">
                             </i><span>
                                 {{ $item->nama }} - {{ $item->jabatan }}

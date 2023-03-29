@@ -17,8 +17,8 @@
                 var calendarEl = document.getElementById('calendar');
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     initialView: 'dayGridMonth',
-                    slotMinTime: '7:00:00',
-                    slotMaxTime: '18:00:00',
+                    // slotMinTime: '7:00:00',
+                    // slotMaxTime: '18:00:00',
                     headerToolbar: {
                         left: 'dayGridMonth,timeGridWeek,timeGridDay',
                         center: 'title',
