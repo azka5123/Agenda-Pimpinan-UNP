@@ -20,12 +20,7 @@
                         <div
                             class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
                             <div class="card card-primary border-box">
-                                @if (session()->get('berhasil'))
-                                    <div class="alert alert-success">{{ session()->get('berhasil') }}</div>
-                                @elseif (session()->get('error'))
-                                    <div class="alert alert-danger">{{ session()->get('error') }}</div>
-                                @endif
-                                <div class="card-header card-header-auth" >
+                                <div class="card-header card-header-auth">
                                     <h4 class="text-center">Login</h4>
                                 </div>
                                 <div class="card-body card-body-auth">
@@ -37,16 +32,12 @@
                                             @error('email')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
-                                            @if (session()->get('error'))
-                                                <div class="text-danger">{{ session()->get('error') }}</div>
-                                            @endif
+
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control" name="password"
                                                 placeholder="Password">
-                                            @error('password')
-                                                <div class="text-danger">{{ $message }}</div>
-                                            @enderror
+
                                         </div>
                                         {{-- <div class="form-group">
                                             <input type="submit" class="btn btn-primary btn-lg btn-block" value="asd">

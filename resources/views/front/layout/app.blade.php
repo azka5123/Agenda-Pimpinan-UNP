@@ -8,16 +8,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="icon" type="image/png" href="{{ asset('dist-front/img/logounp.png') }}"/>
+    <link rel="icon" type="image/png" href="{{ asset('dist-front/img/logounp.png') }}" />
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
 
     <!-- Custom fonts for this template-->
     @livewireStyles
     @include('front.layout.styles')
     @include('front.layout.scripts')
-    
+
 
 </head>
 
@@ -28,17 +29,6 @@
             <div id="content">
                 @include('front.layout.nav')
                 <div class="container-fluid">
-                    @if ($errors->any())
-                        @foreach ($errors->all() as $error)
-                            <script>
-                                iziToast.error({
-                                    title: '',
-                                    position: 'topRight',
-                                    message: '{{ $error }}',
-                                });
-                            </script>
-                        @endforeach
-                    @endif
 
                     @if (session()->get('success'))
                         <script>
@@ -49,6 +39,17 @@
                             });
                         </script>
                     @endif
+
+                    @if (session()->get('error'))
+                        <script>
+                            iziToast.error({
+                                title: '',
+                                position: 'topRight',
+                                message: '{{ session()->get('error') }}',
+                            });
+                        </script>
+                    @endif
+
                     @yield('main_content')
                 </div>
             </div>
@@ -82,10 +83,10 @@
     @include('front.layout.scripts_footer')
     <script>
         ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error => {
-                console.error( error );
-            } );
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
     </script>
     @livewireScripts
 </body>

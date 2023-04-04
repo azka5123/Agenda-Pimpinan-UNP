@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Jadwal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class UserJadwalController extends Controller
@@ -19,8 +20,12 @@ class UserJadwalController extends Controller
 
     public function create()
     {
+        date_default_timezone_set('Asia/Jakarta');
+        $now = Carbon::now();
+        $tgl = $now->format('Y-m-d H:i');
         $jadwal = Jadwal::with(['rUser'])->where('user_id', Auth::user()->id)->get();
         $user = User::where('id', '1')->first();
+        $events[] = [];
         foreach ($jadwal as $time) {
             $events[] = [
                 'title' => $time->keterangan,
@@ -29,7 +34,7 @@ class UserJadwalController extends Controller
                 'end' => $time->finish_time,
             ];
         }
-        return view('user.jadwal.create_jadwal', compact('events', 'jadwal', 'user'));
+        return view('user.jadwal.create_jadwal', compact('events', 'jadwal', 'user', 'tgl'));
     }
 
 

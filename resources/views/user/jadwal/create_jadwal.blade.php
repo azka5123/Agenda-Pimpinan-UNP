@@ -13,20 +13,23 @@
                         <div class="card-body">
                             <div class="form-group mb-3">
                                 <label>Nama Dosen</label>
-                                <input type="text" class="form-control" name="tanggal" value="{{ Auth::user()->nama }}" readonly>   
+                                <input type="text" class="form-control" name="tanggal" value="{{ Auth::user()->nama }}"
+                                    readonly>
                             </div>
                             <div class="form-group mb-3">
                                 <label>Tanggal Mulai</label>
-                                <input type="datetime-local" class="form-control" name="start_time">
+                                <input type="datetime-local" class="form-control" name="start_time"
+                                    value="{{ $tgl }}" />
                             </div>
                             <div class="form-group mb-3">
                                 <label>Tanggal Berakhir</label>
-                                <input type="datetime-local" class="form-control" name="finish_time">
+                                <input type="datetime-local" class="form-control" name="finish_time"
+                                    value="{{ $tgl }}">
                             </div>
                             <div class="form-group mb-3">
                                 <label>Keterangan</label>
-                                <textarea class="form-control" name="keterangan" rows="5"></textarea>                                
-                            </div>                            
+                                <textarea class="form-control" name="keterangan" rows="5"></textarea>
+                            </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-info">Submit</button>
                             </div>

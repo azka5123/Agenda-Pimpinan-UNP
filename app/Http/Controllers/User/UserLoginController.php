@@ -39,8 +39,9 @@ class UserLoginController extends Controller
         ];
         // dd($credentials);die;
         if (Auth::attempt($credentials)) {
-            // dd($credentials);die;
-            return redirect()->route('show_jadwal');
+            if (Auth::user()->token != '') {
+                return redirect()->route('show_jadwal');
+            }
         } else {
             return redirect()->route('front_show')->with('error', 'User tidak ditemukan');
         }

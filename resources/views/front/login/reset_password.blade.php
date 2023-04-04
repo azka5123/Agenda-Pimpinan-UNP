@@ -38,9 +38,6 @@
                                             @error('password')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
-                                            {{-- @if (session()->get('error'))
-                                                <div class="text-danger">{{ session()->get('error') }}</div>
-                                            @endif --}}
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control" name="retype-password"
@@ -48,9 +45,6 @@
                                             @error('retype-password')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
-                                            {{-- @if (session()->get('error'))
-                                                <div class="text-danger">{{ session()->get('error') }}</div>
-                                            @endif --}}
                                         </div>
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-lg btn-block">
@@ -58,11 +52,6 @@
                                             </button>
                                         </div>
                                         <div class="form-group">
-                                            {{-- <div>
-                                                <a href="{{ route('admin_login') }}">
-                                                    Back to login page
-                                                </a>
-                                            </div> --}}
                                         </div>
                                     </form>
                                 </div>
