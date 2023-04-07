@@ -7,6 +7,7 @@ use App\Models\Jadwal;
 use App\Mail\Websitemail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -51,7 +52,7 @@ class UserLoginController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('front_show')->with('berhasil', 'logout success');
+        return redirect()->route('front_show')->with('success', 'logout success');
     }
 
     public function forget_submit(Request $request)
@@ -67,11 +68,11 @@ class UserLoginController extends Controller
 
         $reset_link = url('user/reset-password/' . $token . '/' . $request->email);
         $subject = 'reset password';
-        $message = 'klik link <a href="' . $reset_link . '">ini</a>';
+        $message = 'klik link ini untuk mereset akun anda <a href="' . $reset_link . '">ini</a> <br> jika link tidak bisa diklik copy dan paste ini di web browser anda<br>' . $reset_link;
 
         Mail::to($request->email)->send(new Websitemail($subject, $message));
 
-        return redirect()->route('front_show')->with('berhasil', 'Lihat email anda');
+        return redirect()->route('front_show')->with('success', 'Lihat email anda');
     }
 
     public function reset_password($token, $email)
@@ -85,15 +86,31 @@ class UserLoginController extends Controller
 
     public function reset_submit(Request $request)
     {
-        $request->validate([
-            'password' => 'required',
-            'retype-password' => 'required|same:password'
-        ]);
-        $reset = User::where('token', $request->token)->where('email', $request->email)->first();
-        $reset->password = Hash::make($request->password);
-        $reset->token = '';
-        $reset->update();
+        $userAgent = $request->header('User-Agent');
+        if (strpos($userAgent, 'Android') !== false) {
+            $request->validate([
+                'password' => 'required',
+                'retype-password' => 'required|same:password'
+            ]);
+            $reset = User::where('token', $request->token)->where('email', $request->email)->first();
+            $reset->password = Hash::make($request->password);
+            $reset->token = '';
+            $reset->update();
 
-        return redirect()->route('front_show')->with('berhasil', 'Password berhasil diubah');
+            $url = 'agenda2910://agendatest000.com';
+
+            return redirect($url);
+        } else {
+            $request->validate([
+                'password' => 'required',
+                'retype-password' => 'required|same:password'
+            ]);
+            $reset = User::where('token', $request->token)->where('email', $request->email)->first();
+            $reset->password = Hash::make($request->password);
+            $reset->token = '';
+            $reset->update();
+
+            return redirect()->route('front_show')->with('success', 'Password berhasil diubah');
+        }
     }
 }
