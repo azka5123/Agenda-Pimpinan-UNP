@@ -43,6 +43,8 @@
                                             class="fas fa-edit"></i>edit</a>
                                     <a href="{{ route('admin_user_delete', $item->id) }}" class="btn btn-danger"
                                         onclick="return confirm('are u sure?')"> <i class="fas fa-trash"></i>delete</a>
+                                    <a href="{{ route('admin_user_rekap', $item->id) }}" class="btn btn-warning"> <i
+                                            class="fas fa-rekap"></i>rekap</a>
                                 </td>
                             </tr>
                         @endforeach

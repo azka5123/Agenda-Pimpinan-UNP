@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\JadwalExport;
 use App\Http\Controllers\Controller;
+use App\Models\Jadwal;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminUserController extends Controller
 {
@@ -71,5 +74,19 @@ class AdminUserController extends Controller
     {
         User::where('id', $id)->delete();
         return redirect()->route('admin_user_show')->with('success', 'data berhasil dihapus');
+    }
+
+    public function rekap($id)
+    {
+        $jadwal = Jadwal::with('rUser')->where('user_id', $id)->get();
+        $user = User::find($id);
+        // $user = $jadwal->user_id;
+        return view('admin.user.user_rekap', compact('user', 'jadwal'));
+    }
+
+    public function export($id)
+    {
+        $nama = User::where('id', $id)->first();
+        return Excel::download(new JadwalExport($id), 'rekap kegiatan ' . $nama->nama . '.xlsx');
     }
 }
