@@ -13,7 +13,10 @@
         "livewire/livewire": "^2.12",
         "maatwebsite/excel": "^3.1",
         "phpoffice/phpspreadsheet": "^1.28",
+        "pusher/pusher-php-server": "^7.2",
+        "rakeshthapac/laratime": "^1.0",
         "select2/select2": "^4.0",
+        "thomasjohnkane/snooze": "^2.3",
         "vinkla/hashids": "10.0.0"
     },
     "require-dev": {

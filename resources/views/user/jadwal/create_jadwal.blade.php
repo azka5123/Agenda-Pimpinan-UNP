@@ -19,12 +19,12 @@
                             <div class="form-group mb-3">
                                 <label>Tanggal Mulai</label>
                                 <input type="datetime-local" class="form-control" name="start_time"
-                                    value="{{ $tgl }}" />
+                                    value="{{ $tgl }}" id="date1" />
                             </div>
                             <div class="form-group mb-3">
                                 <label>Tanggal Berakhir</label>
                                 <input type="datetime-local" class="form-control" name="finish_time"
-                                    value="{{ $tgl }}">
+                                    value="{{ $tgl }}" id="date2">
                             </div>
                             <div class="form-group mb-3">
                                 <label>Keterangan</label>

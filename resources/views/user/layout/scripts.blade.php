@@ -10,6 +10,83 @@
 <script src="{{ asset('dist-front/js/iziToast.min.js') }}"></script>
 <script src="{{ asset('dist-front/js/summernote-bs4.js') }}"></script>
 <script src="{{ asset('dist-front/js/calender.js') }}"></script>
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+{{-- <script src="{{ asset('dist-front/js/notif.js') }}"></script> --}}
+
+<script>
+    function listNotif() {
+        $.ajax({
+            url: "{{ route('unread') }}",
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                var notifications = data.notifications;
+                var html = '';
+                if (notifications.length > 0) {
+
+                    for (var i = 0; i < notifications.length; i++) {
+                        html += '<div class="row mb-3">';
+                        html += '<div class="col col-3">';
+
+                        html += '<div class="mr-3 mt-3">';
+                        html += '<div class="icon-circle bg-warning">';
+                        html += '<i class="fas fa-exclamation-triangle text-white"></i>';
+                        html += '</div></div></div>'
+
+                        html += '<div class="col col-9">';
+                        html += '<div class="small text-gray-500">';
+                        html += "{{ Carbon\Carbon::now()->isoFormat('dddd, D MMMM Y') }}";
+                        html += '</div>';
+                        html += '<div>';
+                        html += JSON.parse(notifications[i].data);
+                        html += '</div>';
+                        html += '</div>';
+
+                        html += '</div>';
+                    }
+                }
+                $('#keterangan').html(html);
+            },
+            error: function(data) {
+                console.log('Error:', data);
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        listNotif();
+        setInterval(listNotif, 5000); // Refresh notifikasi setiap 30 detik
+    });
+</script>
+
+<script>
+    function getUnreadNotifications() {
+        $.ajax({
+            url: "{{ route('unread') }}",
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                var notifications = data.notifications;
+                var count = notifications.length;
+                if (count > 0) {
+                    $('#jumlah-notif').html(count);
+                } else {
+                    $('#jumlah-notif').html('0');
+                }
+            },
+            error: function(data) {
+                console.log('Error:', data);
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        getUnreadNotifications();
+        setInterval(getUnreadNotifications, 30000); // Refresh notifikasi setiap 30 detik
+    });
+</script>
+
+
 
 
 
@@ -39,4 +116,3 @@
 {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script> --}}
-

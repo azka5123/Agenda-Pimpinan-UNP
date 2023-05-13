@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="{{ asset('dist/css/sb-admin-2.min.css') }}">
 <link rel="stylesheet" href="{{ asset('dist/vendor/fontawesome-free/css/all.min.css') }}" type="text/css">
 <link rel="stylesheet" href="{{ asset('dist/css/iziToast.min.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 {{-- 
 <link rel="stylesheet" href="{{ asset('dist/css/bootstrap.min.css') }}">

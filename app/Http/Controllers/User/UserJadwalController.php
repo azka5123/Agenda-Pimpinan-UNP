@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Events\EventJadwal;
 use App\Models\User;
 use App\Models\Jadwal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Notifications;
+use App\Notifications\JadwalNotif;
+use App\Notifications\JadwalNotif2;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
+use Pusher\Pusher;
 
 class UserJadwalController extends Controller
 {
@@ -15,7 +21,15 @@ class UserJadwalController extends Controller
     public function index()
     {
         $events = Jadwal::all();
-        return view('user.jadwal.show_jadwal', compact('events'));
+
+        // $notificationCount = auth()->user()->unreadNotifications->count();
+        return view('user.jadwal.show_jadwal', compact('events', 'jumlah_notif'));
+    }
+
+    public function markAsRead()
+    {
+        Auth::user()->unreadNotifications->markAsRead();
+        return redirect()->back();
     }
 
     public function create()
@@ -49,8 +63,35 @@ class UserJadwalController extends Controller
         $store->user_id = Auth::user()->id;
         $store->start_time = $request->start_time;
         $store->finish_time = $request->finish_time;
-        $store->keterangan = $request->keterangan;
+        $ket = $store->keterangan = $request->keterangan;
+        // $test = User::find(Auth::user()->id);
+        // $when = now()->addMinutes(2);
         $store->save();
+
+        $pengingat = Carbon::parse($request->start_time);
+        $now = Carbon::now();
+        if ($now->diffInHours($pengingat) < 1) {
+            $task = User::findOrFail(Auth::user()->id);
+            $task->notify(new JadwalNotif2($ket));
+        } else {
+            $task = User::findOrFail(Auth::user()->id);
+            $task->notifyAt(new JadwalNotif($ket), $pengingat->subHours(1));
+        }
+
+        // $notif = new EventJadwal('wada');
+        // event($notif);
+
+
+        // $test->notify((new JadwalNotif($store->start_time, $store->keterangan))->delay($when));
+
+        // $task = User::findOrFail(Auth::user()->id);
+        // $task->notifyAt(new JadwalNotif('asfd'), Carbon::now()->addMinutes(2));
+
+        // $notif = new JadwalNotif($task);
+        // $task->snoozeReminders()->first()->attachNotification($notif);
+        // dd($task);
+        // die;
+        // event(new EventJadwal($task));
 
         return redirect()->route('show_jadwal')->with('success', 'Data berhasil ditambahkan');
     }
@@ -59,7 +100,6 @@ class UserJadwalController extends Controller
     public function show()
     {
         $events = Jadwal::all();
-
         $jadwal = Jadwal::with(['rUser'])->where('user_id', Auth::user()->id)->get();
         foreach ($jadwal as $time) {
             $events[] = [
@@ -71,7 +111,16 @@ class UserJadwalController extends Controller
         }
 
         $user = Jadwal::orderBy('id', 'asc')->get();
+        // return response()->json(view('user.jadwal.show_jadwal', compact('user', 'events')));
         return view('user.jadwal.show_jadwal', compact('user', 'events'));
+    }
+
+    public function unread()
+    {
+        $jumlah_notif = Notifications::where('notifiable_id', Auth::user()->id)->where('read_at', null)->get();
+        return response()->json([
+            'notifications' => $jumlah_notif,
+        ]);
     }
 
     public function show2()

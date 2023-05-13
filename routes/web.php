@@ -60,6 +60,8 @@ Route::get('user/logout', [UserLoginController::class, 'logout'])->name('user_lo
 
 //user jadwal
 Route::middleware(['auth'])->group(function () {
+    Route::get('/user/notif', [UserJadwalController::class, 'markAsRead'])->name('notif_jadwal');
+    Route::get('/user/unread', [UserJadwalController::class, 'unread'])->name('unread');
     Route::get('/user/show/jadwal', [UserJadwalController::class, 'show'])->name('show_jadwal');
     Route::get('/user/show/all_jadwal', [UserJadwalController::class, 'show2'])->name('show_all_jadwal');
     Route::get('/user/create/jadwal', [UserJadwalController::class, 'create'])->name('create_jadwal');

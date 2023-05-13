@@ -6,27 +6,41 @@
 
 
 <!-- Bootstrap core JavaScript-->
- <script src="{{ asset("dist/vendor/jquery/jquery.min.js") }}"></script>
- <script src="{{ asset("dist/vendor/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
+<script src="{{ asset('dist/vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('dist/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
- <!-- Core plugin JavaScript-->
- <script src="{{ asset("dist/vendor/jquery-easing/jquery.easing.min.js") }}"></script>
+<!-- Core plugin JavaScript-->
+<script src="{{ asset('dist/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
- <!-- Custom scripts for all pages-->
- <script src="{{ asset("dist/js/sb-admin-2.min.js") }}"></script>
-
- <!-- Page level plugins -->
- <script src="{{ asset("dist/vendor/chart.js/Chart.min.js") }}"></script>
- <script src="{{ asset('dist/vendor/datatables/jquery.dataTables.min.js') }}"></script>
- <script src="{{ asset('dist/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-
-
- <!-- Page level custom scripts -->
- <script src="{{ asset("dist/js/demo/chart-area-demo.js") }}"></script>
- <script src="{{ asset("dist/js/demo/chart-pie-demo.js") }}"></script>
- <script src="{{ asset('dist/js/demo/datatables-demo.js') }}"></script>
- 
+<!-- Custom scripts for all pages-->
+<script src="{{ asset('dist/js/sb-admin-2.min.js') }}"></script>
+{{-- 
+<!-- Page level plugins -->
+<script src="{{ asset('dist/vendor/chart.js/Chart.min.js') }}"></script>
+<script src="{{ asset('dist/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('dist/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
 
+<!-- Page level custom scripts -->
+<script src="{{ asset('dist/js/demo/chart-area-demo.js') }}"></script>
+<script src="{{ asset('dist/js/demo/chart-pie-demo.js') }}"></script>
+<script src="{{ asset('dist/js/demo/datatables-demo.js') }}"></script> --}}
 
+<script>
+    // Ambil referensi elemen select date
+    var date1 = document.getElementById('date1');
+    var date2 = document.getElementById('date2');
 
+    // Tambahkan event listener pada date2
+    date2.addEventListener('change', function() {
+        // Validasi jika date2 kurang dari date1
+        if (date2.value < date1.value) {
+            iziToast.error({
+                // title: 'Error',
+                message: 'tanggal berakhir harus lebih besar dari tanggal mulai',
+                position: 'topRight'
+            });
+            date2.value = date1.value;
+        }
+    });
+</script>

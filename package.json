@@ -10,5 +10,11 @@
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
         "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "laratime-js": "^1.0.1",
+        "laravel-echo": "^1.15.1",
+        "pusher-js": "^8.0.2",
+        "watch": "^1.0.2"
     }
 }
