@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('jabatan');
             $table->string('email');
             $table->string('password');
-            $table->string('token');
+            $table->string('token')->nullable();
             $table->timestamps();
         });
     }

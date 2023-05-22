@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Notifications;
 use App\Notifications\JadwalNotif;
 use App\Notifications\JadwalNotif2;
+use Berkayk\OneSignal\OneSignalFacade;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
@@ -58,7 +59,7 @@ class UserJadwalController extends Controller
             'start_time' => 'required',
             'keterangan' => 'required',
         ]);
-
+        $user = User::where('id', Auth::user()->id)->first();
         $store = new Jadwal();
         $store->user_id = Auth::user()->id;
         $store->start_time = $request->start_time;
@@ -73,26 +74,32 @@ class UserJadwalController extends Controller
         if ($now->diffInHours($pengingat) < 1) {
             $task = User::findOrFail(Auth::user()->id);
             $task->notify(new JadwalNotif2($ket));
+
+            $message = "Acara " . $ket . " akan segera dimulai kurang dari 1 jam lagi.";
+            $userId = [$user->onesignal_id_flutter];
+            $title = 'test';
+            $params = [
+                'headings' => ['en' => $title],
+                'contents' => ['en' => $message],
+                'include_player_ids' => [$userId],
+            ];
+            OneSignalFacade::sendNotificationCustom($params);
         } else {
             $task = User::findOrFail(Auth::user()->id);
-            $task->notifyAt(new JadwalNotif($ket), $pengingat->subHours(1));
+            $tgl = $pengingat->subHours(1);
+            $task->notifyAt(new JadwalNotif($ket), $tgl);
+
+            $message = "Acara " . $ket . " akan segera dimulai dalam 1 jam lagi.";
+            $userId = ['0e63110e-b5a6-4680-8c66-a7fd9c592b35'];
+            $title = 'test';
+            $params = [
+                'headings' => ['id' => $title],
+                'contents' => ['id' => $message],
+                'include_player_ids' => $userId,
+                'send_after' => $tgl,
+            ];
+            OneSignalFacade::sendNotificationCustom($params);
         }
-
-        // $notif = new EventJadwal('wada');
-        // event($notif);
-
-
-        // $test->notify((new JadwalNotif($store->start_time, $store->keterangan))->delay($when));
-
-        // $task = User::findOrFail(Auth::user()->id);
-        // $task->notifyAt(new JadwalNotif('asfd'), Carbon::now()->addMinutes(2));
-
-        // $notif = new JadwalNotif($task);
-        // $task->snoozeReminders()->first()->attachNotification($notif);
-        // dd($task);
-        // die;
-        // event(new EventJadwal($task));
-
         return redirect()->route('show_jadwal')->with('success', 'Data berhasil ditambahkan');
     }
 

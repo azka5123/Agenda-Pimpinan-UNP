@@ -7,11 +7,12 @@ use App\Models\Jadwal;
 use App\Mail\Websitemail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Berkayk\OneSignal\OneSignalFacade;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-
-
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\HtmlString;
 
 class UserLoginController extends Controller
 {
@@ -31,7 +32,7 @@ class UserLoginController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
         ]);
         $credentials = [
             'email' => $request->email,
@@ -39,9 +40,7 @@ class UserLoginController extends Controller
         ];
         // dd($credentials);die;
         if (Auth::attempt($credentials) && Auth::user()->token == '') {
-
             return redirect()->route('show_jadwal');
-
             //return redirect()->route('front_show')->with('error', 'User tidak ditemukan');
         } else {
             return redirect()->route('front_show')->with('error', 'User tidak ditemukan');

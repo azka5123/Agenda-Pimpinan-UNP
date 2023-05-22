@@ -1,0 +1,17 @@
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+.banner {
+    /* background-color: #1E2E54; */
+    /* background-image: linear-gradient(to top, rgba(68, 230, 255, 0.623), rgba(252, 252, 253, 0.322)), url('../img/banner2.jpg'); */
+    background-image: url('../img/banner2.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 95vh;
+}
+
+.font {
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+}

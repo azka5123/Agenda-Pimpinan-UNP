@@ -76,4 +76,5 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/', [FrontHomeController::class, 'show'])->name('front_show');
 Route::get('/search', [FrontHomeController::class, 'search'])->name('front_search');
 Route::get('/search/{nama}', [FrontHomeController::class, 'show2'])->name('front_show2');
+Route::get('/reload/{nama}', [FrontHomeController::class, 'reload'])->name('front_reload');
 //end front

@@ -80,5 +80,3 @@
         </div>
     </nav>
     {{-- Akhir Navbar --}}
-
-    <div class="" style="height: 5rem"></div>

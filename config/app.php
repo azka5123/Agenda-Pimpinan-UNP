@@ -197,6 +197,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Berkayk\OneSignal\OneSignalServiceProvider::class,
+        // Berkayk\OneSignal\OneSignalClient::class,
 
     ],
 
@@ -213,6 +215,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         Thomasjohnkane\ScheduledNotifications\Facades\ScheduledNotification::class,
+        'OneSignal' => Berkayk\OneSignal\OneSignalFacade::class
 
     ])->toArray(),
 

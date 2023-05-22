@@ -50,8 +50,8 @@
                         </script>
                     @endif
 
-                    @yield('main_content')
                 </div>
+                @yield('main_content')
             </div>
             @include('front.layout.footer')
         </div>

@@ -15,6 +15,9 @@ class JadwalExport implements FromCollection, WithHeadings
 
     private $userId;
 
+    private $rowNumber = 0;
+
+
     public function __construct(int $userId)
     {
         $this->userId = $userId;
@@ -26,8 +29,8 @@ class JadwalExport implements FromCollection, WithHeadings
         return [
             'nama',
             'keterangan',
-            'start_time',
-            'finish_time',
+            'start time',
+            'finish time',
         ];
     }
 
@@ -41,4 +44,18 @@ class JadwalExport implements FromCollection, WithHeadings
                 'finish_time',
             )->join('users', 'users.id', 'jadwals.user_id')->where('user_id', $this->userId)->get();
     }
+
+    // public function map($row): array
+    // {
+    //     $this->rowNumber++;
+
+    //     return [
+    //         $this->rowNumber,
+    //         $row->nama,
+    //         $row->keterangan,
+    //         $row->start_time,
+    //         $row->finish_time,
+    //         // Add other row data as needed
+    //     ];
+    // }
 }

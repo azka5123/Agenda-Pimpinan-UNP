@@ -27,6 +27,7 @@ class ApiLoginController extends Controller
             ]);
         }
 
+
         return $user->createToken('user login')->plainTextToken;
     }
 

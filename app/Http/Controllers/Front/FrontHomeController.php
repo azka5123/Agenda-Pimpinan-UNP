@@ -43,4 +43,25 @@ class FrontHomeController extends Controller
         }
         return view('front.home', compact('events', 'jadwal', 'user'));
     }
+
+    public function reload($nama)
+    {
+        $events = [];
+        // $decoded_id = Hashids::decode($id);
+        $jadwal = user::with('rJadwal')->where('nama', $nama)->get();
+        // dd($jadwal);
+        // die;
+        // $user = User::where('nama', $nama)->first();
+        foreach ($jadwal as $user) {
+            foreach ($user->rJadwal as $time) {
+                $events[] = [
+                    'title' => $time->keterangan,
+                    'defaultRangeSeparator' => '-',
+                    'start' => $time->start_time,
+                    'end' => $time->finish_time,
+                ];
+            }
+        }
+        return response()->json($events);
+    }
 }
