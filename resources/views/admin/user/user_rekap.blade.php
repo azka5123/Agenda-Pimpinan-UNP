@@ -15,15 +15,21 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Keterangan</th>
-                            <th>Waktu mulai</th>
-                            <th>Waktu berakhir</th>
-                        </tr>
-                    </thead>
+                    <tr>
+                        <td colspan="5" rowspan="2" align="center"><b>Rekap Jadwal {{ $user->nama }}</b></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Keterangan</th>
+                        <th>Waktu mulai</th>
+                        <th>Waktu berakhir</th>
+                    </tr>
+
                     <tfoot>
                         <tr>
                             <th>No</th>
