@@ -40,11 +40,15 @@ class ApiUserController extends Controller
             'keterangan' => 'required',
             'start_time' => 'required',
             'finish_time' => 'required',
-            'onesignal_id_flutter' => 'required'
+            // 'onesignal_id_flutter' => 'required'
         ]);
+        $task = User::find(Auth::user()->id);
+        if ($task->onesignal_id_flutter == '' || $task->onesignal_id_flutter != Auth::user()->onesignal_id_flutter) {
+            $task->onesignal_id_flutter = $request['onesignal_id_flutter'];
+            $task->update();
+        }
         $request['user_id'] = Auth::user()->id;
         $ket = $request['keterangan'];
-        $task = User::find(Auth::user()->id);
         $userId = $request['onesignal_id_flutter'];
         // $userId = ['0e63110e-b5a6-4680-8c66-a7fd9c592b35'];
         $store =  Jadwal::create($request->all());

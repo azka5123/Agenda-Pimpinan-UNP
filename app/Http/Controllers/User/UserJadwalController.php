@@ -74,31 +74,33 @@ class UserJadwalController extends Controller
         if ($now->diffInHours($pengingat) < 1) {
             $task = User::findOrFail(Auth::user()->id);
             $task->notify(new JadwalNotif2($ket));
-
-            $message = "Acara " . $ket . " akan segera dimulai kurang dari 1 jam lagi.";
-            $userId = [$user->onesignal_id_flutter];
-            $title = 'test';
-            $params = [
-                'headings' => ['en' => $title],
-                'contents' => ['en' => $message],
-                'include_player_ids' => [$userId],
-            ];
-            OneSignalFacade::sendNotificationCustom($params);
+            if ($user->onesignal_id_flutter) {
+                $message = "Acara " . $ket . " akan segera dimulai kurang dari 1 jam lagi.";
+                $userId = [$user->onesignal_id_flutter];
+                $title = 'Pengingat';
+                $params = [
+                    'headings' => ['en' => $title],
+                    'contents' => ['en' => $message],
+                    'include_player_ids' => [$userId],
+                ];
+                OneSignalFacade::sendNotificationCustom($params);
+            }
         } else {
             $task = User::findOrFail(Auth::user()->id);
             $tgl = $pengingat->subHours(1);
             $task->notifyAt(new JadwalNotif($ket), $tgl);
-
-            $message = "Acara " . $ket . " akan segera dimulai dalam 1 jam lagi.";
-            $userId = ['0e63110e-b5a6-4680-8c66-a7fd9c592b35'];
-            $title = 'test';
-            $params = [
-                'headings' => ['id' => $title],
-                'contents' => ['id' => $message],
-                'include_player_ids' => $userId,
-                'send_after' => $tgl,
-            ];
-            OneSignalFacade::sendNotificationCustom($params);
+            if ($user->onesignal_id_flutter) {
+                $message = "Acara " . $ket . " akan segera dimulai dalam 1 jam lagi.";
+                $userId = [$user->onesignal_id_flutter];
+                $title = 'Pengingat';
+                $params = [
+                    'headings' => ['id' => $title],
+                    'contents' => ['id' => $message],
+                    'include_player_ids' => $userId,
+                    'send_after' => $tgl,
+                ];
+                OneSignalFacade::sendNotificationCustom($params);
+            }
         }
         return redirect()->route('show_jadwal')->with('success', 'Data berhasil ditambahkan');
     }
