@@ -57,11 +57,12 @@ class UserJadwalController extends Controller
     {
         $request->validate([
             'start_time' => 'required',
-            'keterangan' => 'required',
+            'title' => 'required',
         ]);
         $user = User::where('id', Auth::user()->id)->first();
         $store = new Jadwal();
         $store->user_id = Auth::user()->id;
+        $store->title = $request->title;
         $store->start_time = $request->start_time;
         $store->finish_time = $request->finish_time;
         $ket = $store->keterangan = $request->keterangan;
@@ -105,6 +106,41 @@ class UserJadwalController extends Controller
         return redirect()->route('show_jadwal')->with('success', 'Data berhasil ditambahkan');
     }
 
+    public function popover($id)
+    {
+        $edit = Jadwal::where('id', $id)->first();
+        $jadwal = Jadwal::with(['rUser'])->where('user_id', Auth::user()->id)->get();
+        foreach ($jadwal as $time) {
+            $events[] = [
+                'id' => $time->id,
+                'title' => $time->title,
+                'defaultRangeSeparator' => '-',
+                'start' => $time->start_time,
+                'end' => $time->finish_time,
+            ];
+        }
+      
+
+        return view('user.jadwal.popover', compact('edit', 'events'));
+        
+
+    }
+
+    public function update_popover(Request $request, $id)
+    {
+        $request->validate([
+
+            'keterangan' => 'nullable',
+        ]);
+
+        $update = Jadwal::where('id', $id)->first();
+        
+        $update->keterangan = $request->keterangan;
+
+        $update->update();
+
+        return redirect()->route('show_jadwal')->with('success', 'Data berhasil diedit');
+    }
 
     public function show()
     {
@@ -112,7 +148,8 @@ class UserJadwalController extends Controller
         $jadwal = Jadwal::with(['rUser'])->where('user_id', Auth::user()->id)->get();
         foreach ($jadwal as $time) {
             $events[] = [
-                'title' => $time->keterangan,
+                'id' => $time->id,
+                'title' => $time->title,
                 'defaultRangeSeparator' => '-',
                 'start' => $time->start_time,
                 'end' => $time->finish_time,
@@ -152,12 +189,14 @@ class UserJadwalController extends Controller
     {
         $request->validate([
 
+            'title' => 'required',
             'start_time' => 'required',
             'finish_time' => 'required',
-            'keterangan' => 'required',
+            'keterangan' => 'nullable',
         ]);
 
         $update = Jadwal::where('id', $id)->first();
+        $update->title = $request->title;
         $update->start_time = $request->start_time;
         $update->finish_time = $request->finish_time;
         $update->keterangan = $request->keterangan;

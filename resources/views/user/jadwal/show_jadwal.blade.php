@@ -26,9 +26,16 @@
                             center: 'title',
                             right: 'today prev,next'
                         },
+                        editable: true,
                         events: @json($events),
                         dayMaxEventRows: 2,
                         selectable: true,
+
+                        eventClick: function(info){
+                            var eventId = info.event.id;
+                            window.location.href = '/user/popover/' + eventId;
+
+                        }
                     });
                     calendar.render();
                 });

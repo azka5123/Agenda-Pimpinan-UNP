@@ -19,7 +19,7 @@
 
                 <div class="task bg-info text-white">
                    
-                    {{ $loop->iteration }}. {{ $item->keterangan }}, ( {{ $item->start_time }} )
+                    {{ $loop->iteration }}. {{ $item->title }}, ( {{ $item->start_time->isoFormat('dddd, D MMM Y HH:m') }} )
                     <a href="{{ route('delete_jadwal', $item->id) }}"> <i class="fas fa-trash-alt text-white"></i></a>
                     <a href="{{ route('edit_jadwal', $item->id) }}"> <i class="fas fa-edit text-white"> Edit</i></a>
                 </div>

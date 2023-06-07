@@ -37,9 +37,11 @@ class ApiUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'keterangan' => 'required',
+            'title' => 'required',
             'start_time' => 'required',
             'finish_time' => 'required',
+            'keterangan' => 'nullable',
+
             // 'onesignal_id_flutter' => 'required'
         ]);
         $task = User::find(Auth::user()->id);
@@ -86,9 +88,11 @@ class ApiUserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'keterangan' => 'required',
+            'title' => 'required',
             'start_time' => 'required',
             'finish_time' => 'required',
+            'keterangan' => 'required',
+
         ]);
 
         $update = Jadwal::findOrFail($id);

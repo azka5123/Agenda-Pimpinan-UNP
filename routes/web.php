@@ -69,6 +69,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/edit/jadwal/{id}', [UserJadwalController::class, 'edit'])->name('edit_jadwal');
     Route::post('/user/update/jadwal/{id}', [UserJadwalController::class, 'update'])->name('update_jadwal');
     Route::get('/user/delete/jadwal/{id}', [UserJadwalController::class, 'delete'])->name('delete_jadwal');
+    Route::get('/user/popover/{id}', [UserJadwalController::class, 'popover'])->name('popover');
+    Route::post('/user/update/popover{id}', [UserJadwalController::class, 'update_popover'])->name('update_popover');
+
+
 });
 
 

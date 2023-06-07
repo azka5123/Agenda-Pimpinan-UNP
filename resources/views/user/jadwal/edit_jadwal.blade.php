@@ -16,6 +16,10 @@
                                 <input type="text" class="form-control" name="tanggal" value="{{ $edit->user_id }}">
                             </div>
                             <div class="form-group mb-3">
+                                <label>Nama Kegiatan</label>
+                                <input type="text" class="form-control" name="title" value="{{ $edit->title }}">
+                            </div>
+                            <div class="form-group mb-3">
                                 <label>Tanggal Mulai</label>
                                 <input type="datetime-local" class="form-control" name="start_time"
                                     value="{{ $edit->start_time }}" id="date1">

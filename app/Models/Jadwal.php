@@ -12,9 +12,10 @@ class Jadwal extends Model
     use HasFactory, HasApiTokens;
 
     protected $table = 'jadwals';
+    protected $dates = ['start_time', 'finish_time'];
 
     protected $fillable = [
-        'user_id', 'keterangan', 'start_time', 'finish_time'
+        'user_id','title', 'keterangan', 'start_time', 'finish_time'
     ];
 
     protected $guarded = [

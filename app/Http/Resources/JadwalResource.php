@@ -21,6 +21,7 @@ class JadwalResource extends JsonResource
         return [
             'id' => $this->id,
             'user_id' => $this->user_id,
+            'title' => $this->title,
             'keterangan' => $this->keterangan,
             'start_time' => $this->start_time,
             'finish_time' => $this->finish_time,
