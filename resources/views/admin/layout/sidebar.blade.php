@@ -22,13 +22,13 @@
 
      <li class="nav-item">
          <a class="nav-link" href="{{ route('admin_user_show') }}">
-             <i class="fas fa-fw fa-tachometer-alt">
-             </i><span>User</span></a>
+             <i class="fas fa-users">
+             </i>&nbsp;<span>User</span></a>
      </li>
 
      <li class="nav-item">
          <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
-             <i class="fas fa-fw fa-tachometer-alt"></i>
+             <i class="fa fa-sign-out" aria-hidden="true"></i>
              <span>Logout</span></a>
      </li>
 

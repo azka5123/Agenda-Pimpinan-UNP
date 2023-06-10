@@ -34,12 +34,16 @@ class FrontHomeController extends Controller
         foreach ($jadwal as $user) {
             foreach ($user->rJadwal as $time) {
                 $events[] = [
-                    'title' => $time->keterangan,
+                    'title' => $time->title,
                     'defaultRangeSeparator' => '-',
                     'start' => $time->start_time,
                     'end' => $time->finish_time,
+                    'keterangan' => $time->keterangan,
+
                 ];
             }
+            // dd($events);
+            // die;
         }
         return view('front.home', compact('events', 'jadwal', 'user'));
     }
@@ -55,10 +59,12 @@ class FrontHomeController extends Controller
         foreach ($jadwal as $user) {
             foreach ($user->rJadwal as $time) {
                 $events[] = [
-                    'title' => $time->keterangan,
+                    'title' => $time->title,
                     'defaultRangeSeparator' => '-',
                     'start' => $time->start_time,
                     'end' => $time->finish_time,
+                    'keterangan' => $time->keterangan,
+
                 ];
             }
         }

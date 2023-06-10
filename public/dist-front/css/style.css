@@ -5,7 +5,7 @@
 .banner {
     /* background-color: #1E2E54; */
     /* background-image: linear-gradient(to top, rgba(68, 230, 255, 0.623), rgba(252, 252, 253, 0.322)), url('../img/banner2.jpg'); */
-    background-image: url('../img/banner2.jpg');
+    background-image: url('../img/banner.png');
     background-size: cover;
     background-position: center;
     height: 95vh;
@@ -13,5 +13,72 @@
 
 .font {
     font-family: 'Poppins', sans-serif;
-    font-size: 17px;
+}
+
+.rata {
+    text-align: justify;
+    line-height: 2.3;
+}
+
+/* Styles needed */
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* .scrollButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.scrollIcon {
+    transform: rotate(90deg);
+    display: inline-block;
+    position: relative;
+    animation: 2.5s scrollIcon infinite;
+} */
+
+/* @keyframes scrollIcon {
+    0% {
+        opacity: 0;
+        top: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        top: 15px;
+    }
+} */
+
+@media (max-width: 767.98px) {
+    .fc .fc-toolbar.fc-header-toolbar {
+        display: block;
+        text-align: center;
+    }
+
+    .fc-header-toolbar .fc-toolbar-chunk {
+        display: block;
+    }
+
+    /* .banner {
+        height: 180vh;
+        
+    } */
+
+    #overflow {
+        display: -webkit-box;
+        -webkit-line-clamp: 8;
+        /* Jumlah baris yang ingin ditampilkan */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
 }

@@ -39,12 +39,12 @@
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->jabatan }}</td>
                                 <td>{{ $item->email }}</td>
-                                <td><a href="{{ route('admin_user_edit', $item->id) }}" class="btn btn-warning"> <i
-                                            class="fas fa-edit"></i>edit</a>
-                                    <a href="{{ route('admin_user_delete', $item->id) }}" class="btn btn-danger"
-                                        onclick="return confirm('are u sure?')"> <i class="fas fa-trash"></i>delete</a>
-                                    <a href="{{ route('admin_user_rekap', $item->id) }}" class="btn btn-warning"> <i
-                                            class="fas fa-rekap"></i>rekap</a>
+                                <td><a href="{{ route('admin_user_edit', $item->id) }}" class="btn btn-sm btn-primary "> <i
+                                            class="fas fa-edit"></i> Edit</a>
+                                    <a href="{{ route('admin_user_delete', $item->id) }}" class="btn btn-sm btn-danger"
+                                        onclick="return confirm('are u sure?')"> <i class="fas fa-trash"></i> Delete</a>
+                                    <a href="{{ route('admin_user_rekap', $item->id) }}" class="btn btn-sm btn-success">
+                                        <i class='fa fa-file-text'></i> Rekap</a>
                                 </td>
                             </tr>
                         @endforeach

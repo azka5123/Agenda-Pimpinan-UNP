@@ -7,6 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class JadwalSeeder extends Seeder
 {
@@ -20,6 +21,7 @@ class JadwalSeeder extends Seeder
         $faker = Faker::create('id_ID');
         for ($i = 0; $i < 25; $i++) {
             $activity = $faker->randomElement(['meeting', 'dinas', 'ngajar']);
+            $desc = $faker->paragraph();
             $start_time = Carbon::parse();
             $end_time = Carbon::parse();
             $random_date = Carbon::now()->startOfMonth()->addDays(rand(0, Carbon::now()->daysInMonth - 1)); //random tanggal di bulan ini
@@ -34,8 +36,9 @@ class JadwalSeeder extends Seeder
             // Set end time 2 hours after start time
             $end_time = $random_datetime->copy()->addHours(2);
             DB::table('jadwals')->insert([
-                'user_id' => 3,
-                'keterangan' => $activity,
+                'user_id' => 2,
+                'title' => $activity,
+                'keterangan' => $desc,
                 'start_time' => $random_datetime,
                 'finish_time' => $end_time
             ]);

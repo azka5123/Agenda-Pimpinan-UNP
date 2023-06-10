@@ -63,8 +63,11 @@ class UserJadwalController extends Controller
         $store = new Jadwal();
         $store->user_id = Auth::user()->id;
         $store->title = $request->title;
-        $store->start_time = $request->start_time;
-        $store->finish_time = $request->finish_time;
+        $start = $store->start_time = $request->start_time;
+        $end = $store->finish_time = $request->finish_time;
+        if ($start == $end) {
+            return redirect()->back()->with('error', 'Waktu tidak boleh sama');
+        }
         $ket = $store->keterangan = $request->keterangan;
         // $test = User::find(Auth::user()->id);
         // $when = now()->addMinutes(2);
@@ -119,11 +122,9 @@ class UserJadwalController extends Controller
                 'end' => $time->finish_time,
             ];
         }
-      
+
 
         return view('user.jadwal.popover', compact('edit', 'events'));
-        
-
     }
 
     public function update_popover(Request $request, $id)
@@ -134,7 +135,7 @@ class UserJadwalController extends Controller
         ]);
 
         $update = Jadwal::where('id', $id)->first();
-        
+
         $update->keterangan = $request->keterangan;
 
         $update->update();
@@ -144,7 +145,7 @@ class UserJadwalController extends Controller
 
     public function show()
     {
-        $events = Jadwal::all();
+        // $events = Jadwal::all();
         $jadwal = Jadwal::with(['rUser'])->where('user_id', Auth::user()->id)->get();
         foreach ($jadwal as $time) {
             $events[] = [
@@ -153,6 +154,7 @@ class UserJadwalController extends Controller
                 'defaultRangeSeparator' => '-',
                 'start' => $time->start_time,
                 'end' => $time->finish_time,
+                'keterangan' => $time->keterangan,
             ];
         }
 

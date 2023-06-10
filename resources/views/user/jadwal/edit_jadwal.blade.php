@@ -9,11 +9,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <h5>Create Jadwal</h5>
+                        <h5>Edit Jadwal</h5>
                         <div class="card-body">
                             <div class="form-group mb-3">
-                                <label>Id Dosen</label>
-                                <input type="text" class="form-control" name="tanggal" value="{{ $edit->user_id }}">
+                                <label>Nama</label>
+                                <input type="text" class="form-control" name="tanggal" value="{{ Auth::user()->nama }}"
+                                    readonly>
                             </div>
                             <div class="form-group mb-3">
                                 <label>Nama Kegiatan</label>

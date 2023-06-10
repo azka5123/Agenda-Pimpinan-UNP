@@ -17,17 +17,19 @@
                                     readonly>
                             </div>
                             <div class="form-group mb-3">
+                                <label>Nama kegiatan</label>
+                                <input type="text" class="form-control" name="title">
+                            </div>
+                            <div class="form-group mb-3">
                                 <label>Tanggal Mulai</label>
-                                <input type="datetime-local" class="form-control" name="start_time"
-                                    value="{{ $tgl }}" id="date1" />
+                                <input type="datetime-local" class="form-control" name="start_time" id="date1" />
                             </div>
                             <div class="form-group mb-3">
                                 <label>Tanggal Berakhir</label>
-                                <input type="datetime-local" class="form-control" name="finish_time"
-                                    value="{{ $tgl }}" id="date2">
+                                <input type="datetime-local" class="form-control" name="finish_time" id="date2">
                             </div>
                             <div class="form-group mb-3">
-                                <label>Keterangan</label>
+                                <label>Keterangan (boleh dikosongkan)</label>
                                 <textarea class="form-control" name="keterangan" rows="5"></textarea>
                             </div>
                             <div class="form-group">

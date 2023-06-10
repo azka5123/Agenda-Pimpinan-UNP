@@ -3,32 +3,74 @@
 @section('title', 'Agenda Pimpinan UNP')
 
 @section('main_content')
-    <div class="container-fluid banner mt-5">
-        <div class="row">
-            <div class="col col-7 pt-5">
-                <p class="pt-5 text-light font">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis laudantium
-                    autem officiis, quasi, vero minima ab sed quaerat quidem est cum. Cum sit est reprehenderit iste
-                    pariatur amet in aliquam quas itaque id tempore assumenda molestias sapiente, facilis illum totam
-                    possimus mollitia. Repellendus quidem minus quibusdam dolor quaerat consequuntur nesciunt ab voluptatem
-                    id! Veniam dolorem, eius nulla voluptates aut exercitationem in modi eaque repellendus ipsa sapiente
-                    esse quae explicabo id voluptatibus saepe cum? Officia, recusandae officiis modi, ullam totam
-                    repudiandae maiores voluptates atque neque quasi sapiente quibusdam voluptatibus placeat voluptas
-                    doloribus ipsum nulla. Nulla incidunt maxime suscipit dicta facere amet quasi quos accusamus similique
-                    eligendi laborum, ad, fugiat in porro dolorum fuga praesentium impedit deserunt repudiandae, itaque eos!
-                    Error blanditiis consequuntur dolor quos rem corrupti facilis, provident placeat fugiat incidunt vero
-                    facere quas ab laboriosam natus deleniti tenetur molestias sapiente neque dolorum suscipit dicta eveniet
-                    laudantium tempora. Ipsa expedita officia aliquam voluptates commodi quas maxime, hic unde ipsam nemo
-                    exercitationem atque dolorum adipisci molestiae nobis quis ad cum quo ex quibusdam. Ratione atque maxime
-                    et doloribus dolorum? Hic amet error et laboriosam officia fuga, iste temporibus repudiandae
-                    perspiciatis obcaecati praesentium facilis enim perferendis eaque deleniti fugit doloribus ducimus neque
-                    sit?</p>
+    <!-- Modal -->
+    <div class="modal fade" id="test" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-info text-light">
+                    <p class="modal-title mt-3" id="exampleModalLabel">
+                    <p class="my-auto">
+                        <i class='fas fa-calendar-check'></i>&nbsp;
+                        <span id="title"></span>
+                    </p>
+                    </p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="container">
+                    <div class="modal-body">
+                        <table border="0">
+                            {{-- <tr>
+                            <td>
+                                <p class="mt-3" id="start"></p>
+                            </td>
+                        </tr> --}}
+                            <tr>
+                                <td>
+                                    <p class="mt-3 text-justify text-dark" id="keterangan"></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="d-flex justify-content-end text-dark">
+                                    <span class="mt-3">Selesai &nbsp;</span>
+                                    <p class="mt-3" id="end"></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
             </div>
         </div>
-        <div class="text-center mt-5"><a href="#start" class="btn btn-success text-center shadow">LET'S GET STARTED</a></div>
+    </div>
+    <div class="container-fluid banner mt-5">
+        <div class="row container">
+            <div class="col col-12 col-lg-7 pt-5 pt-lg-0">
+                <h3 class="pt-lg-5 text-light font display-4">AGENDA PIMPINAN UNP</h3>
+                <p class="pt-lg-5 text-light font rata" id="overflow">
+                    Selamat datang di Agenda Pimpinan UNP!
+                    Eksplorasi agenda terkini dari pimpinan UNP di sini.
+                    Temukan kegiatan inspiratif pimpinan UNP.
+                    Ikuti jejak perubahan melalui agenda kami.
+                    Dapatkan wawasan mendalam dengan melihat agenda pimpinan UNP.
+                    Informasi terbaru tentang agenda pimpinan UNP menanti Anda.
+                    Kunjungi kami untuk mengetahui agenda terbaru dari pimpinan UNP.
+                    Saksikan momen bersejarah melalui agenda pimpinan UNP.
+                    Nikmati pengalaman menyeluruh dengan agenda pimpinan UNP.
+                    Jelajahi dunia pimpinan UNP melalui agenda kami.
+                    Mari bersama-sama melihat masa depan melalui agenda pimpinan UNP.
+                </p>
+            </div>
+        </div>
+        <div class="text-center mt-lg-2"><a href="#scroll" class="btn btn-success text-center shadow">LET'S GET
+                STARTED</a></div>
     </div>
 
+    <div id="scroll" style="height: 5vh"></div>
 
-    <div id="start" data-aos="fade-down" data-aos-duration="1000" class="mt-5">
+
+    <section class="mt-5">
         {{-- searchbar --}}
         <livewire:user-data>
 
@@ -38,6 +80,11 @@
                 var segments = url.split('/'); // Membagi path menjadi segment
                 var nama = segments[segments.length - 1]; // Mengambil ID dari segment terakhir
 
+                var tgl;
+                var title = document.getElementById('title')
+                var start = document.getElementById('start')
+                var end = document.getElementById('end')
+                var keterangan = document.getElementById('keterangan')
 
                 document.addEventListener('DOMContentLoaded', function() {
                     var calendarEl = document.getElementById('calendar');
@@ -51,6 +98,18 @@
                             right: 'today prev,next'
                         },
                         events: @json($events),
+
+                        eventClick: function(info) {
+                            $('#test').modal('show');
+                            title.innerHTML = info.event.title;
+                            // start1 = info.event.start;
+                            // start2 = moment(start1);
+                            // start.innerHTML = start2.lang('id').format("LLLL");
+                            end1 = info.event.end;
+                            end2 = moment(end1);
+                            end.innerHTML = end2.lang('id').format("LLLL");
+                            keterangan.innerHTML = info.event.extendedProps.keterangan;
+                        },
                         dayMaxEventRows: 2,
                         selectable: true,
                     });
@@ -77,6 +136,5 @@
                     setInterval(refetchEvents, 5000);
                 });
             </script>
-            </section>
-
-        @endsection
+    </section>
+@endsection

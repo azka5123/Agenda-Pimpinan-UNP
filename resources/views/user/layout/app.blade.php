@@ -47,6 +47,14 @@
                                 message: '{{ session()->get('success') }}',
                             });
                         </script>
+                    @elseif (session()->get('error'))
+                        <script>
+                            iziToast.error({
+                                title: '',
+                                position: 'topRight',
+                                message: '{{ session()->get('error') }}',
+                            });
+                        </script>
                     @endif
                     @yield('main_content')
                 </div>
@@ -54,10 +62,10 @@
             @include('user.layout.footer')
         </div>
     </div>
-    <!-- Scroll to Top Button-->
+    {{-- <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
-    </a>
+    </a> --}}
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

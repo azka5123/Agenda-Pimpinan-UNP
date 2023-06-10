@@ -9,14 +9,14 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary"><a href="{{ route('admin_user_export', $user->id) }}"
                     class="btn btn-info">
-                    <i class="fas fa-plus"></i> Export to excel</a></h6>
+                    <i class='fas fa-file-export'></i> Export to excel</a></h6>
         </div>
 
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <tr>
-                        <td colspan="5" rowspan="2" align="center"><b>Rekap Jadwal {{ $user->nama }}</b></td>
+                        <td colspan="6" rowspan="2" align="center"><b>Rekap Jadwal {{ $user->nama }}</b></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -25,6 +25,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
+                        <th>Nama kegiatan</th>
                         <th>Keterangan</th>
                         <th>Waktu mulai</th>
                         <th>Waktu berakhir</th>
@@ -34,6 +35,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
+                            <th>Nama kegiatan</th>
                             <th>Keterangan</th>
                             <th>Waktu mulai</th>
                             <th>Waktu berakhir</th>
@@ -44,6 +46,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->rUser->nama }}</td>
+                                <td>{{ $item->title }}</td>
                                 <td>{{ $item->keterangan }}</td>
                                 <td>{{ $item->start_time }}</td>
                                 <td>{{ $item->finish_time }}</td>

@@ -64,11 +64,12 @@ class JadwalExport implements WithStyles, FromView
         $baris = 3 + $this->line;
         $sheet->getColumnDimension('A')->setWidth(5);
         $sheet->getColumnDimension('B')->setWidth(7);
-        $sheet->getColumnDimension('C')->setWidth(11);
-        $sheet->getColumnDimension('D')->setWidth(20);
+        $sheet->getColumnDimension('C')->setWidth(15);
+        $sheet->getColumnDimension('D')->setWidth(11);
         $sheet->getColumnDimension('E')->setWidth(20);
+        $sheet->getColumnDimension('F')->setWidth(20);
         return [
-            'A1:E2' => [
+            'A1:F2' => [
                 'borders' => [
                     'allBorders' => [
                         'borderStyle' => 'thick'
@@ -81,9 +82,13 @@ class JadwalExport implements WithStyles, FromView
                 'alignment' => [
                     'horizontal' => 'center',
                     'vertical' => 'center'
-                ]
+                ],
+                'fill' => [
+                    'fillType'   => Fill::FILL_SOLID,
+                    'startColor' => ['rgb' => "79E0EE"],
+                ],
             ],
-            'A3:E3' => [
+            'A3:F3' => [
                 'borders' => [
                     'allBorders' => [
                         'borderStyle' => 'thin'
@@ -97,10 +102,11 @@ class JadwalExport implements WithStyles, FromView
                 ],
                 'fill' => [
                     'fillType'   => Fill::FILL_SOLID,
-                    'startColor' => ['rgb' => "ffff00"],
+                    'startColor' => ['rgb' => "98EECC"],
                 ],
+
             ],
-            'A4:E' . $baris => [
+            'A4:F' . $baris => [
                 'borders' => [
                     'allBorders' => [
                         'borderStyle' => 'thin'
@@ -109,10 +115,7 @@ class JadwalExport implements WithStyles, FromView
                 'alignment' => [
                     'horizontal' => 'left',
                 ],
-                'fill' => [
-                    'fillType'   => Fill::FILL_SOLID,
-                    'startColor' => ['rgb' => "ffff00"],
-                ],
+
             ]
 
         ];
