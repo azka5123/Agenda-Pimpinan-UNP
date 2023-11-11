@@ -52,8 +52,8 @@
 
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active ml-3 {{ Request::is('search/*') ? '' : 'mt-2' }}">
-                        <a class="nav-link" href="{{ route('front_show') }}"><i class="fas fa-fw fa-home"></i> Home<span
-                                class="sr-only"></span></a>
+                        <a class="nav-link" href="{{ route('front_show') }}"><i class="fas fa-fw fa-home"></i>
+                            Home<span class="sr-only"></span></a>
                     </li>
                     @if (Request::is('search/*'))
                         <li class="nav-item active mr-3">
@@ -61,8 +61,8 @@
                                     {{ $user->nama }} - {{ $user->jabatan }}</span></a>
                         </li>
                     @else
-                        <li class="nav-item active {{ Request::is('search/*') ? '' : 'mt-2' }}">
-                            <a class="nav-link"><span class="mt-1"><i class="fas fa-fw fa-user"></i>
+                        <li class="nav-item active {{ Request::is('search/*') ? '' : '' }}">
+                            <a class="nav-link"><span class="mt-1"></span>
                         </li>
                     @endif
 

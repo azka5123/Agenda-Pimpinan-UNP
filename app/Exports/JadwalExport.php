@@ -29,28 +29,6 @@ class JadwalExport implements WithStyles, FromView
         $this->line = 0;
     }
 
-
-    // public function headings(): array
-    // {
-    //     return [
-    //         'Nama',
-    //         'Keterangan',
-    //         'Waktu mulai',
-    //         'Waktu berakhir',
-    //     ];
-    // }
-
-    // public function collection()
-    // {
-    //     return Jadwal::query()
-    //         ->select(
-    //             'users.nama as user_id',
-    //             'keterangan',
-    //             'start_time',
-    //             'finish_time',
-    //         )->join('users', 'users.id', 'jadwals.user_id')->where('user_id', $this->userId)->get();
-    // }
-
     public function view(): View
     {
         $jadwal = Jadwal::with('rUser')->where('user_id', $this->userId)->get();

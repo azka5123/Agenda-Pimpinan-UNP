@@ -59,7 +59,7 @@
                     @yield('main_content')
                 </div>
             </div>
-            @include('user.layout.footer')
+            {{-- @include('user.layout.footer') --}}
         </div>
     </div>
     {{-- <!-- Scroll to Top Button-->

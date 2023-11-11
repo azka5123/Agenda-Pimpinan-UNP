@@ -88,19 +88,3 @@
 </script>
 
 <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" defer></script>
-
-<script>
-    var id;
-    window.OneSignal = window.OneSignal || [];
-    OneSignal.push(function() {
-        OneSignal.init({
-            appId: "b1bb6f27-a837-43a5-b1a1-1da2720d0cff",
-            safari_web_id: "web.onesignal.auto.162dc776-ab2c-42c2-8206-1135116280d4",
-            notifyButton: {
-                enable: true,
-            },
-            subdomainName: "agenda-hari",
-        });
-
-    });
-</script>

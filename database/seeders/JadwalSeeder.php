@@ -36,7 +36,7 @@ class JadwalSeeder extends Seeder
             // Set end time 2 hours after start time
             $end_time = $random_datetime->copy()->addHours(2);
             DB::table('jadwals')->insert([
-                'user_id' => 2,
+                'user_id' => 10,
                 'title' => $activity,
                 'keterangan' => $desc,
                 'start_time' => $random_datetime,

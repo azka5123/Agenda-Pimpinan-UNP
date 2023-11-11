@@ -2,23 +2,23 @@
  <ul class="navbar-nav bg-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
      <!-- Sidebar - Brand -->
-     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin_user_show') }}">
+     {{-- <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin_user_show') }}">
          <div class="sidebar-brand-icon rotate-n-15">
              <i class="fas fa-laugh-wink"></i>
          </div>
-         <div class="sidebar-brand-text mx-3">{{ Auth::user()->name }}</div>
-     </a>
+     </a> --}}
+     <div class="sidebar-heading mt-3 text-light">
+         <h6><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;
+             Menu</h6>
+     </div>
 
      <!-- Divider -->
      <hr class="sidebar-divider my-0">
 
 
      <!-- Heading -->
-     <div class="sidebar-heading">
-         Menu
-     </div>
 
-     <hr class="sidebar-divider my-0">
+     <hr class="sidebar-divider">
 
      <li class="nav-item">
          <a class="nav-link" href="{{ route('admin_user_show') }}">

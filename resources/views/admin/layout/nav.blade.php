@@ -5,6 +5,9 @@
         <i class="fa fa-bars"></i>
     </button>
 
+    <i class="fas fa-user"></i>
+    <div class="sidebar-brand-text mx-3 text-dark font-weight-bold">{{ Auth::user()->name }}</div>
+
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
 

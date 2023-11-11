@@ -34,16 +34,17 @@
                     </tfoot>
                     <tbody>
                         @foreach ($user as $item)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->nama }}</td>
-                                <td>{{ $item->jabatan }}</td>
-                                <td>{{ $item->email }}</td>
-                                <td><a href="{{ route('admin_user_edit', $item->id) }}" class="btn btn-sm btn-primary "> <i
-                                            class="fas fa-edit"></i> Edit</a>
+                            <tr scope="row">
+                                <td scope="col">{{ $loop->iteration }}</td>
+                                <td scope="col">{{ $item->nama }}</td>
+                                <td scope="col" style="max-width: 150px">{{ $item->jabatan }}</td>
+                                <td scope="col">{{ $item->email }}</td>
+                                <td scope="col"><a href="{{ route('admin_user_edit', $item->id) }}"
+                                        class="btn btn-sm btn-primary px-3 "> <i class="fas fa-edit"></i> Edit</a>
                                     <a href="{{ route('admin_user_delete', $item->id) }}" class="btn btn-sm btn-danger"
                                         onclick="return confirm('are u sure?')"> <i class="fas fa-trash"></i> Delete</a>
-                                    <a href="{{ route('admin_user_rekap', $item->id) }}" class="btn btn-sm btn-success">
+                                    <a href="{{ route('admin_user_rekap', $item->id) }}"
+                                        class="btn btn-sm btn-success px-2">
                                         <i class='fa fa-file-text'></i> Rekap</a>
                                 </td>
                             </tr>

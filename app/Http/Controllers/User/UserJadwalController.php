@@ -145,7 +145,7 @@ class UserJadwalController extends Controller
 
     public function show()
     {
-        // $events = Jadwal::all();
+        $events = [];;
         $jadwal = Jadwal::with(['rUser'])->where('user_id', Auth::user()->id)->get();
         foreach ($jadwal as $time) {
             $events[] = [

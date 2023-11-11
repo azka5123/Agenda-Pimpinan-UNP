@@ -4,6 +4,8 @@
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
     </button>
+    <i class="fas fa-user"></i>
+    <div class="sidebar-brand-text mx-3 text-dark font-weight-bold">{{ Auth::user()->nama }}</div>
 
     <!-- Topbar Search -->
     {{-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
